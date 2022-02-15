@@ -1,13 +1,13 @@
 import './App.css';
-/* import Login from '../Login';
- */import Navbar from '../Header/Navbar/Navbar';
+import Login from '../Login';
+/* import Navbar from '../Header/Navbar/Navbar'; */
 
 
 const App = () => {
   return (
     <div className="App">
-      {/* <Login/> */}
-      <Navbar />
+      <Login btnName="Login"/>
+      {/* <Navbar /> */}
     </div>
   );
 }

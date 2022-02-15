@@ -1,90 +1,87 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Rubik:wght@300&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@300&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Dosis:wght@200&family=Rubik:wght@300&display=swap");
 
-.container{
-    background-color: #292929;
-    font-family: 'Rubik', sans-serif;
-    display: grid;
-    align-content: center;
-    align-items: center;
-    justify-items: center;
-    place-items: center;
-}
-.login{
-    width: 90%;
-    max-width: 18rem;
-    margin-left: auto;
-    margin-right: auto;
-}
-h2{
-    color: #eee;
-    text-transform: uppercase;
-    text-indent: 2rem;
-    letter-spacing: 00.3rem;
-}
-Form{
-    display: grid;
-    margin: 0;
-    padding: 0;
-}
-.login_fields{
-    display: flex;
-    height: 2em;
-    margin: 0.45em;
-    align-items: middle;
+.container {
+  font-family: "Rubik", sans-serif;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
 }
 
-.login_fields_icon{
-    background-color: #5b6066;
-    border-radius: 0.25rem 0 0 0.25rem; 
-    padding: 0.5em;
-    width: 1em;
+.login {
+  display: block;
+  padding: 5px;
 }
 
-.login_fields_input{
-    display: inline-block;
-    color: #eee;
-    background-color: #292929;
-    width: 100%;
-    border-radius: 0 0.25rem 0.25rem 0; 
-    border: 0;
-    margin: 0;
-    padding: 1rem;
-    outline: 0;
-    transition: background-color 0.4s;
-}
-.login_fields_input:hover, 
-.login_fields_input:focus{
-    background-color: #5b6066;
-} 
-
-.submit{
-    background-color: #d6730f; 
-    color: #eee;
-    border: none;
-    border-radius: 00.25rem;
-    width: 100%;
-    transition: background-color 0.4s;
-    text-transform: uppercase;
-    font-size: 0.7em;
-}
-.submit:hover{
-    background-color: #d98938;
-    cursor: pointer;
+.login_body {
+  display: flex;
+  padding: 5px;
 }
 
-.txt_login{ 
-    color: #a5aab1;
-    font-size: 12px;
-    font-family: 'Rubik', sans-serif;
-    text-align: center;
+h2 {
+  color: rgb(54, 54, 54);
+  text-transform: uppercase;
+  letter-spacing: 8px;
 }
-.txt_login a{
-    text-decoration: none;
-    outline: 0;
-    color: #eee;
+
+form {
+  margin: 0;
+  padding: 0;
 }
-.txt_login a:hover{
-    text-decoration: underline;
-    color: #d98938;
+
+.login_fields {
+  overflow: hidden;
+  display: block;
+  margin: 10px;
+}
+
+.login_fields_icon {
+  border-radius: 00.25rem;
+}
+
+.login_fields_input {
+  border: 0;
+  margin-left: 5px;
+  outline: 0;
+  padding: 5px;
+  border-radius: 00.25rem;
+  transition: background-color 0.4s;
+}
+
+.login_fields_input:hover,
+.login_fields_input:focus {
+  background-color: #5b6066;
+}
+
+.btn_submit {
+  padding: 10px;
+  background-color: #d6730f;
+  color: #eee;
+  border: none;
+  border-radius: 00.25rem;
+  width: 100%;
+  transition: background-color 0.4s;
+  text-transform: uppercase;
+  font-size: 0.7em;
+}
+
+.btn_submit:hover {
+  background-color: #d98938;
+  cursor: pointer;
+}
+
+.txt_login {
+  color: #5b6066;
+  font-size: 12px;
+  font-family: "Rubik", sans-serif;
+  text-align: center;
+}
+.txt_login a {
+  text-decoration: none;
+  outline: 0;
+  color: rgb(54, 54, 54);
+}
+.txt_login a:hover {
+  text-decoration: underline;
+  color: #d98938;
 }
