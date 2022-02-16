@@ -1,10 +1,12 @@
 import { useRef } from "react";
-import "./Login.css";
+import "./Form.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 
-const Login = (props) => {
+import { Link } from "react-router-dom";
+
+const Form = (props) => {
   const refUser = useRef(null);
   const refPass = useRef(null);
 
@@ -33,7 +35,7 @@ const Login = (props) => {
                 <FontAwesomeIcon className="login_fields_icon" icon={faUser} />
               </label>
               <input
-                className="login_fields_input from-control"
+                className="login_fields_input"
                 type="email"
                 placeholder="Username"
                 ref={refUser}
@@ -44,18 +46,21 @@ const Login = (props) => {
                 <FontAwesomeIcon className="login_fields_icon" icon={faKey} />
               </label>
               <input
-                className="login_fields_input form-control"
+                className="login_fields_input"
                 type="password"
                 placeholder="Password"
                 ref={refPass}
               />
             </div>
             <div className="login_fields">
-              <button className="btn_submit">Login</button>
+              <button className="btn_submit">{props.btnName}</button>
             </div>
-            <p className="txt_login">
-              Not signed-in yet? <a className="a">Sign-in now</a>
-            </p>
+            {/* <p className="txt_login">
+              Not signed-in yet?{" "}
+              <Link to={'/register'} className="a">
+                Sign-in now
+              </Link>
+            </p> */}
           </form>
         </div>
       </div>
@@ -63,4 +68,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default Form;
