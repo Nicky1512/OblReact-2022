@@ -1,7 +1,7 @@
 const RankingTable = () => {
 
     return (
-      <>
+      <div className="border p-3 mb-4">
         <h1>Ranking</h1>
         <table class="table">
           <thead>
@@ -24,11 +24,22 @@ const RankingTable = () => {
             </tr>
             <tr>
               <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
+              <td>Jacob</td>
+              <td>Thornton</td>
+            </tr>
+            <tr>
+              <th scope="row">4</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
+            </tr>
+            <tr>
+              <th scope="row">5</th>
+              <td>Jacob</td>
+              <td>Thornton</td>
             </tr>
           </tbody>
         </table>
-      </>
+      </div>
     );
 
 }

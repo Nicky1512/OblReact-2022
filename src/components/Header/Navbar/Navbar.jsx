@@ -2,28 +2,25 @@ import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
   return (
-    <div className="wrapper">
-      <ul className="navbar-nav">
-        <li className="nav-item">
-          {/* <Link to="/">Home</Link> */}
-          <a href="#" className="nav-link">
+    <>
+      <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+        <li>
+          <a href="#" className="nav-link px-2 link-secondary">
             Home
           </a>
         </li>
-        <li className="nav-item">
-          {/* <Link to="/">Calcular</Link> */}
-          <a href="#" className="nav-link">
-            Calcular
+        <li>
+          <a href="#" className="nav-link px-2 link-secondary">
+            Calculadora
           </a>
         </li>
-        <li className="nav-item">
-          {/* <Link to="/">Graphs</Link> */}
-          <a href="#" className="nav-link">
-            Graphs
+        <li>
+          <a href="#" className="nav-link px-2 link-secondary">
+            Stats
           </a>
         </li>
       </ul>
-    </div>
+    </>
   );
 };
 
