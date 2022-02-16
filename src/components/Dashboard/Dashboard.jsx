@@ -9,12 +9,16 @@ const Dashboard = () => {
   return (
     <>
       <Header />
-      <div className="container-fluid">
+      {/* <div className="container-fluid">
         <Envios />
         <Gastos />
+      </div> */}
+      {/* <div className="container">
+        <Calculadora />
+      </div> */}
+      <div className="container-fluid">
+        <Stats />
       </div>
-      {/* <Calculadora /> */}
-      {/* <Stats /> */}
     </>
   );
 };
