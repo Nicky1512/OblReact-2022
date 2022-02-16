@@ -5,9 +5,13 @@ const Stats = () => {
   return (
     <>
       <RankingTable />
-      <h1>Graphs</h1>
-      <Graph />
-      <Graph />
+      <div>
+        <h1>Graphs</h1>
+        <div className="container">
+          <Graph />
+          <Graph />
+        </div>
+      </div>
     </>
   );
 };

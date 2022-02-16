@@ -1,37 +1,43 @@
 const Calculadora = () => {
-
-    return (
-      <>
-        <h1>EnviosForm</h1>
-        <form action="">
-          <fieldset className="mb-3">
-            <label htmlFor="slcOrigen">Origen</label>
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
-
-            <label className="ml-4" htmlFor="slcDestino">
-              Destino
-            </label>
-            <select className="form-select" aria-label="Default select example">
-              <option selected>Open this select menu</option>
-              <option value="1">One</option>
-              <option value="2">Two</option>
-              <option value="3">Three</option>
-            </select>
+  return (
+    <div className="">
+      <h1>Calculadora</h1>
+      <div className="p-5 border bg-light">
+        <form>
+          <fieldset>
+            <legend>Calcular distancia</legend>
+            <div class="mb-3">
+              <label for="slcOrigen" className="form-label d-block">
+                Origen
+              </label>
+              <select name="" id="slcOrigen" className="form-select">
+                <option value="">Europa</option>
+                <option value="">America</option>
+                <option value="">Asia</option>
+              </select>
+            </div>
+            <div class="mb-3">
+              <label for="slcDestino" className="form-label d-block">
+                Destino
+              </label>
+              <select name="" id="slcDestino" className="form-select">
+                <option value="">Europa</option>
+                <option value="">America</option>
+                <option value="">Asia</option>
+              </select>
+            </div>
+            <div class="mb-3"></div>
+            <button type="submit" class="btn btn-primary">
+              Calcular
+            </button>
           </fieldset>
-          <button className="btn btn-primary">Calcular</button>
         </form>
-
-        <p className="mt-5">
-            Distancia
-        </p>
-      </>
-    );
-
-}
+      </div>
+      <div className="mt-3">
+        <p className="border p-2">RESULTADO</p>
+      </div>
+    </div>
+  );
+};
 
 export default Calculadora;
