@@ -24,8 +24,8 @@ useEffect(() => {
 const App = () => {
   return (
     <div className="App">
-      {/* <Login /> */}
-      <Dashboard />
+      <Login />
+    
     </div>
   );
 }

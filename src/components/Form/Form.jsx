@@ -1,28 +1,31 @@
 import { useRef } from "react";
 import "./Form.css";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 
 const Form = (props) => {
-  const refUser = useRef(null);
-  const refPass = useRef(null);
+    const refUser = useRef(null);
+    const refPass = useRef(null);
 
-  // const onLoginSubmit = e => {
-  //     e.preventDefault()
+   const onLoginSubmit = e => {
+       e.preventDefault()
 
-  //     const username = refUser.current.value
-  //     const password = refPass.current.value
+    const username = refUser.current.value
+     const password = refPass.current.value
+ 
+   // Validan los datos
+      if (username === '' || password === '') {
+        alert('Por favor ingresa los campos obligatorios')
+      } else {
+    
+        const userData = ({ usuario: username, password: password });
+        props.onClick(userData)
+      }
+  }
 
-  //     // Validan los datos
-  //     if (username === '' || password === '') {
-  //       alert('Por favor ingresa los campos obligatorios')
-  //     } else {
-  //       onLogin({ user: username, pass: password })
-  //     }
-  //   }
+
 
   return (
     <section className="container">
@@ -53,7 +56,7 @@ const Form = (props) => {
               />
             </div>
             <div className="login_fields">
-              <button className="btn_submit">{props.btnName}</button>
+              <button onClick={onLoginSubmit} className="btn_submit">{props.btnName}</button>
             </div>
             {/* <p className="txt_login">
               Not signed-in yet?{" "}
