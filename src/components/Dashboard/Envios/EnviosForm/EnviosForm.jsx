@@ -1,46 +1,55 @@
 const EnviosForm = () => {
   return (
-    <>
-      <form action="" className="mr-5">
-        <h1>EnviosForm</h1>
-        <fieldset class="input-group mb-3">
-          <span class="input-group-text" id="basic-addon1">
+    <form>
+      <fieldset>
+        <legend>Nuevo Pedido</legend>
+        <div class="mb-3">
+          <label for="inputPeso" class="form-label">
             Peso
-          </span>
-          <input type="text" class="form-control" placeholder="Kg" />
-        </fieldset>
-        <fieldset className="mb-3">
-          <label htmlFor="slcOrigen">Origen</label>
-          <select className="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          </label>
+          <input
+            type="number"
+            id="inputPeso"
+            class="form-control"
+            placeholder="kg"
+          />
+        </div>
+        <div class="mb-3">
+          <label for="slcOrigen" className="form-label d-block">
+            Origen
+          </label>
+          <select name="" id="slcOrigen" className="form-select">
+            <option value="">Europa</option>
+            <option value="">America</option>
+            <option value="">Asia</option>
           </select>
-        </fieldset>
-        <fieldset className="mb-3">
-          <label className="ml-4" htmlFor="slcDestino">
+        </div>
+        <div class="mb-3">
+          <label for="slcDestino" className="form-label d-block">
             Destino
           </label>
-          <select className="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+          <select name="" id="slcDestino" className="form-select">
+            <option value="">Europa</option>
+            <option value="">America</option>
+            <option value="">Asia</option>
           </select>
-        </fieldset>
-        <fieldset className="mb-3">
-          <label htmlFor="slcCategoria">Categoria</label>
-          <select className="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
+        </div>
+        <div class="mb-3">
+          <label for="slcCategoria" className="form-label d-block">
+            Categoria
+          </label>
+          <select name="" id="slcCategoria" className="form-select">
+            <option value="">1</option>
+            <option value="">2</option>
+            <option value="">3</option>
           </select>
-        </fieldset>
-        <button className="btn btn-primary">Enviar</button>
-      </form>
-    </>
+        </div>
+        <div class="mb-3"></div>
+        <button type="submit" class="btn btn-primary">
+          Pedir
+        </button>
+      </fieldset>
+    </form>
   );
 };
 
