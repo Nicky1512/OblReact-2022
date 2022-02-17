@@ -1,4 +1,51 @@
+import { useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+
 const EnviosForm = () => {
+  const inputPeso = useRef();
+  const slcOrigen = useRef();
+  const slcDestino = useRef();
+  const slcCategoria = useRef();
+
+  const userLogged = useSelector((state) => state.userLogged);
+  const dispatch = useDispatch();
+
+  const onClickAddEnvio = async (e) => {
+    e.preventDefault();
+    const peso = inputPeso.current.value;
+    const origen = slcOrigen.current.value;
+    const destino = slcDestino.current.value;
+    const categoria = slcCategoria.current.value;
+
+    if (peso == "" || origen == -1 || destino == -1 || categoria == -1) {
+      alert("Debe completar todos los campos");
+    } else {
+      const envio = {
+        idUsuario: userLogged.id,
+        idCiudadOrigen: origen,
+        idCiudadDestino: destino,
+        peso: peso,
+        distancia: 2.32,
+        precio: 43.56,
+        idCategoria: categoria,
+      };
+    }
+  };
+
+
+ 
+  const calcularDistancia = (origen, destino) =>{
+
+
+  };
+
+  const calcularCosto = (peso, distancia) =>{
+
+    
+  };
+
+
+
   return (
     <form>
       <fieldset>
@@ -19,6 +66,7 @@ const EnviosForm = () => {
             Origen
           </label>
           <select name="" id="slcOrigen" className="form-select">
+            <option value="-1">Seleccione una ciudad</option>
             <option value="">Europa</option>
             <option value="">America</option>
             <option value="">Asia</option>
@@ -29,6 +77,7 @@ const EnviosForm = () => {
             Destino
           </label>
           <select name="" id="slcDestino" className="form-select">
+            <option value="-1">Seleccione una ciudad</option>
             <option value="">Europa</option>
             <option value="">America</option>
             <option value="">Asia</option>
@@ -39,6 +88,7 @@ const EnviosForm = () => {
             Categoria
           </label>
           <select name="" id="slcCategoria" className="form-select">
+            <option value="-1">Seleccione una categoria</option>
             <option value="">1</option>
             <option value="">2</option>
             <option value="">3</option>
