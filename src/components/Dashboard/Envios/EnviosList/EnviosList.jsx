@@ -2,15 +2,14 @@ import "./EnviosList.css";
 
 import EnvioListItem from "./EnviosListItem/EnviosListItem";
 
-const EnviosList = () => {
+const EnviosList = ({ envios }) => {
   return (
     <>
       <div className="container-fluid">
         <h1 className="text-center">Pedidos</h1>
-        <EnvioListItem />
-        <EnvioListItem />
-        <EnvioListItem />
-        <EnvioListItem />
+        {envios.map((envio, index) => (
+          <EnvioListItem {...envio} key={index} />
+        ))}
       </div>
     </>
   );

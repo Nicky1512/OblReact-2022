@@ -1,7 +1,8 @@
 import EnviosList from "./EnviosList";
 import EnviosForm from "./EnviosForm";
 
-const Envios = () => {
+const Envios = ({envios}) => {
+  console.log("envios que llegaron", envios)
   return (
     <div className="container-fluid">
       <div className="row">
@@ -12,7 +13,7 @@ const Envios = () => {
         </div>
         <div className="col-6">
           <div className="p-2 border bg-light">
-            <EnviosList />
+            
           </div>
         </div>
       </div>

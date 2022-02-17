@@ -15,7 +15,7 @@ const onLogin = async (userData) => {
       method: 'POST',
       body: JSON.stringify(userData),
     });
-        console.log("response", response)
+        
         return response.json();
     // if (response.status === 200) {
        
@@ -47,6 +47,7 @@ const onRegister = async (userData) => {
         method: 'POST',
         body: JSON.stringify(userData),
       });
+      
       return response.json();
       // if (response.status === 200) {
          
@@ -68,4 +69,25 @@ const onRegister = async (userData) => {
   };
 
 
-export { onLogin, onRegister };
+const getEnvios = async (userData) => {
+    const response = await fetch(`${BASE_URL}envios.php?idUsuario=${userData.id}`, {
+      headers: {
+        'content-type': 'application/json',
+        'apikey': userData.apiKey,
+      },
+      method: 'GET',
+    });
+  
+    if (response.status === 200) {
+        console.log("response get Envios", response);
+      return response.json();
+    } else {
+      return Promise.reject({
+        message: 'Ha ocurrido un error en la petición',
+        status: response.status,
+      });
+    }
+  };
+
+
+export { onLogin, onRegister, getEnvios };
