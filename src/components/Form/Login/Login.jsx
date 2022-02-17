@@ -1,10 +1,10 @@
 import Form from "../Form";
-import { useDispatch } from "react-redux";
-import { onUserLogged } from "../../../containers/App/actions";
+//import { useDispatch } from "react-redux";
+//import { onUserLogged } from "../../../containers/App/actions";
 import { onLogin } from "../../../services/serviceApi";
 
 const Login = () => {
-  const dispatch = useDispatch();
+ // const dispatch = useDispatch();
   const onLoginSubmit = async (userData) => {
     try {
       return await onLogin(userData);
@@ -35,7 +35,7 @@ const Login = () => {
     <>
       <Form
         btnName="Login"
-        linkText="No sos miembro?"
+        linkText="No tenes cuenta?"
         linkTitle="Registrate!"
         onClick={onLoginSubmit}
       />
