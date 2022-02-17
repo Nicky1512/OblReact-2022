@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './components/App/App';
 import reportWebVitals from './reportWebVitals';
-/* import { Provider } from 'react-redux'
-import { Store } from './containers/store' */
+ import { Provider } from 'react-redux';
+ import store from './containers/store';
 
 //Con STORAGE
 /* ReactDOM.render(
@@ -19,7 +19,9 @@ import { Store } from './containers/store' */
 //Sin STORAGE
 ReactDOM.render(
   <React.StrictMode>
+    <Provider store={store}>
       <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

@@ -15,7 +15,8 @@ const onLogin = async (userData) => {
       method: 'POST',
       body: JSON.stringify(userData),
     });
-    return response.json();
+        console.log("response", response)
+        return response.json();
     // if (response.status === 200) {
        
     //     return response.json();
