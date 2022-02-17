@@ -1,4 +1,23 @@
+
+import { useDispatch, useSelector } from 'react-redux'
+import { onDeleteEnvio } from '../../../../../containers/App/actions';
+import { deleteEnvio } from '../../../../../services/serviceApi'
+
 const EnvioListItem = ({id, ciudad_origen, ciudad_destino, distancia, precio }) => {
+
+  const userLogged = useSelector(state => state.userLogged)
+  const dispatch = useDispatch()
+
+  const onDelete = async () => {
+    console.log("borrar el envio", id);
+    // try {
+    //   await deleteEnvio(id, userLogged)
+    //   dispatch(onDeleteEnvio(id))
+    // } catch (error) {
+    //   alert(error.message)
+    // }
+  }
+
   return (
     <>
       <div className="card text-center">
@@ -10,9 +29,9 @@ const EnvioListItem = ({id, ciudad_origen, ciudad_destino, distancia, precio }) 
           </p>
           <p className="card-text">Distancia: {distancia}km</p>
           <p className="card-text">Costo: {precio}$</p>
-          <a href="#" className="eliminar_btn btn btn-danger">
+          <button onClick={onDelete}  className="eliminar_btn btn btn-danger">
             Eliminar
-          </a>
+          </button>
         </div>
       </div>
     </>
