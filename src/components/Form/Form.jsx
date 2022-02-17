@@ -2,30 +2,45 @@ import { useRef } from "react";
 import "./Form.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
+import { useDispatch } from "react-redux";
+import { onUserLogged } from "../../containers/App/actions";
 
 //import { Link } from "react-router-dom";
 
 const Form = (props) => {
-    const refUser = useRef(null);
-    const refPass = useRef(null);
+  const refUser = useRef(null);
+  const refPass = useRef(null);
 
-   const onLoginSubmit = e => {
-       e.preventDefault()
+  const dispatch = useDispatch();
+  const onLoginSubmit = async (e) => {
+    e.preventDefault();
 
-    const username = refUser.current.value
-     const password = refPass.current.value
- 
-   // Validan los datos
-      if (username === '' || password === '') {
-        alert('Por favor ingresa los campos obligatorios')
-      } else {
-    
-        const userData = ({ usuario: username, password: password });
-        props.onClick(userData)
+    const username = refUser.current.value;
+    const password = refPass.current.value;
+
+    // Validan los datos
+    if (username === "" || password === "") {
+      alert("Por favor ingresa los campos obligatorios");
+    } else {
+      const userData = { usuario: username, password: password };
+
+      try {
+        const data = await props.onClick(userData);
+        console.log(data);
+        if (data.codigo !== 200) {
+          console.log(data.codigo);
+          alert(data.mensaje);
+        } else {
+          //  Guardo al usuario en el storage / localstorage o sessionstorage
+          // sessionStorage.setItem('myTodoAppUser', JSON.stringify(data))
+          //   Invoco a mi componente padre (App) para enviarle los datos del usuario
+          dispatch(onUserLogged(data));
+        }
+      } catch (error) {
+        alert(error.message);
       }
-  }
-
-
+    }
+  };
 
   return (
     <section className="container">
@@ -56,7 +71,9 @@ const Form = (props) => {
               />
             </div>
             <div className="login_fields">
-              <button onClick={onLoginSubmit} className="btn_submit">{props.btnName}</button>
+              <button onClick={onLoginSubmit} className="btn_submit">
+                {props.btnName}
+              </button>
             </div>
             {/* <p className="txt_login">
               Not signed-in yet?{" "}
