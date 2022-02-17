@@ -18,8 +18,12 @@ const Dashboard = () => {
     (async () => {
       try {
         const enviosResponse = await getEnvios(userLogged);
-        dispatch(onLoadEnvios(enviosResponse));
 
+        if (enviosResponse.codigo === 200) {
+          dispatch(onLoadEnvios(enviosResponse.envios));
+        }else{
+          console.log(enviosResponse.codigo);
+        }
       } catch (error) {
         console.log(error.message);
       }
@@ -31,7 +35,7 @@ const Dashboard = () => {
       <Header />
       {
         <div className="container-fluid">
-          <Envios envios={envios.envios}/>
+          <Envios envios={envios} />
           <Gastos />
         </div>
       }

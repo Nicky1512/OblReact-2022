@@ -13,7 +13,7 @@ const Envios = ({envios}) => {
         </div>
         <div className="col-6">
           <div className="p-2 border bg-light">
-            
+            <EnviosList envios={envios}/>
           </div>
         </div>
       </div>
