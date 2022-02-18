@@ -5,6 +5,7 @@ import {
   GET_CATEGORIAS,
   GET_CIUDADES,
   GET_DEPTOS,
+  ON_DELETE_ENVIO
 } from "./constants";
 
 const initialState = {
@@ -30,6 +31,10 @@ const appReducer = (state = initialState, action) => {
       return { ...state,  ciudades: payload };
     case GET_DEPTOS:
       return { ...state, deptos: payload };
+      case ON_DELETE_ENVIO:
+        const newEnviosList = state.envios.filter((envio) => envio.id !== payload.id);
+       // console.log(newEnviosList);
+        return { ...state, envios: newEnviosList };
     default:
       return state;
   }

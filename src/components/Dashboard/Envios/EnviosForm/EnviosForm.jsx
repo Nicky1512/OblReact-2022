@@ -42,11 +42,24 @@ const EnviosForm = () => {
         peso: peso,
         precio: 43.56, //TODO: cambiar por costo calculado
       };
-      console.log(envio);
-      //TODO: Da error 401 cada vez
       try {
         const response = await addEnvio(envio, userLogged);
-        dispatch(onAddEnvio(response));
+        if (response.codigo === 200) {
+          const newEnvio = {
+            ciudad_destino: parseInt(destino),
+            ciudad_origen: parseInt(origen),
+            distancia: 2.32,
+            id: response.idEnvio,
+            id_categoria: categoria,
+            id_usuario: userLogged.id,
+            peso: peso,
+            precio: 43.56,
+          };
+          dispatch(onAddEnvio(newEnvio));
+        }
+
+        
+        
       } catch (error) {
         // console.log(error.response);
         alert(error.message);

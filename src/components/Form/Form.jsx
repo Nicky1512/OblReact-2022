@@ -26,7 +26,7 @@ const Form = (props) => {
 
       try {
         const data = await props.onClick(userData);
-        console.log(data);
+      
         if (data.codigo !== 200) {
           console.log(data.codigo);
           alert(data.mensaje);
