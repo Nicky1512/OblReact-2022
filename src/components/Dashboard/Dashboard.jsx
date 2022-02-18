@@ -15,6 +15,7 @@ const Dashboard = () => {
  // const envios = useSelector((state) => state.envios);
  // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
+  let sum = 0;
 
 
   //Carga envíos
@@ -22,8 +23,18 @@ const Dashboard = () => {
     (async () => {
       try {
         const enviosResponse = await getEnvios(userLogged);
-        if (enviosResponse.codigo === 200) {
-          dispatch(onLoadEnvios(enviosResponse.envios));
+        if (enviosResponse.codigo === 200) {  
+          enviosResponse.envios.forEach(function(envio){
+            sum += envio.precio;
+           });
+          const payload = {
+            envios: enviosResponse.envios,
+            gastoTotal:  sum
+
+          }
+          console.log(payload);
+          dispatch(onLoadEnvios(payload));
+          //dispatch(onLoadEnvios(enviosResponse.envios));
         }else{
           console.log(enviosResponse.codigo);
         }

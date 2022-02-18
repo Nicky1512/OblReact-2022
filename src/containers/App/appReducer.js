@@ -14,6 +14,7 @@ const initialState = {
   categorias: [],
   ciudades: [],
   deptos: [],
+  gasto: 0
 };
 
 const appReducer = (state = initialState, action) => {
@@ -22,9 +23,9 @@ const appReducer = (state = initialState, action) => {
     case ON_USER_LOGGED:
       return { ...state, userLogged: payload };
     case ON_LOAD_ENVIOS:
-      return { ...state, envios: payload };
+      return { ...state, envios: payload.envios, gasto: payload.gastoTotal  };
     case ON_ADD_ENVIO:
-      return { ...state, envios: [...state.envios, payload] };
+      return { ...state, envios: [...state.envios, payload], gasto: [state.gasto + parseFloat(payload.precio)] };
     case GET_CATEGORIAS:
       return { ...state, categorias: payload };
     case GET_CIUDADES:
