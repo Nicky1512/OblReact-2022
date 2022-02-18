@@ -25,11 +25,11 @@ const appReducer = (state = initialState, action) => {
     case ON_ADD_ENVIO:
       return { ...state, envios: [...state.envios, payload] };
     case GET_CATEGORIAS:
-      return { ...state, categorias: [...state.categorias, payload] };
+      return { ...state, categorias: payload };
     case GET_CIUDADES:
-      return { ...state, ciudades: [...state.ciudades, payload] };
+      return { ...state,  ciudades: payload };
     case GET_DEPTOS:
-      return { ...state, deptos: [...state.deptos, payload] };
+      return { ...state, deptos: payload };
     default:
       return state;
   }

@@ -1,8 +1,9 @@
 import 'bootstrap-css-only'
 import './App.css';
-import { useEffect } from 'react';
+//import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Login from '../Form/Login/Login';
+//import Register from '../Form/Register/Register';
 import Dashboard from '../Dashboard/Dashboard'
 import RouterLinks from '../RouterLinks/RouterLinks'
 

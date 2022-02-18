@@ -10,7 +10,7 @@ const EnvioListItem = ({
   precio,
 }) => {
   const userLogged = useSelector((state) => state.userLogged);
-
+  const ciudades = useSelector((state) => state.ciudades);
   const onDelete = async () => {
     console.log("borrar el envio", id);
     // try {
@@ -23,20 +23,27 @@ const EnvioListItem = ({
 
   return (
     <>
-      <div className="card text-center">
-        <div className="card-body">
-          <h5 className="card-title">Pedido</h5>
-          <h6 className="card-subtitle mb-2 text-muted">#.{id}</h6>
-          <p className="card-text">
-            Ciudad Origen: {ciudad_origen} | Ciudad Destino : {ciudad_destino}
-          </p>
-          <p className="card-text">Distancia: {distancia}km</p>
-          <p className="card-text">Costo: {precio}$</p>
-          <button onClick={onDelete} className="eliminar_btn btn btn-danger">
-            Eliminar
-          </button>
+      {ciudades.length === 0 ? (
+        <div>Cargando...</div>
+      ) : (
+        <div className="card text-center">
+          <div className="card-body">
+            <h5 className="card-title">Pedido</h5>
+            <h6 className="card-subtitle mb-2 text-muted">#.{id}</h6>
+            <p className="card-text">
+              Ciudad Origen:{" "}
+              {ciudades.find((ciudad) => ciudad.id === ciudad_origen).nombre} |
+              Ciudad Destino :{" "}
+              {ciudades.find((ciudad) => ciudad.id === ciudad_destino).nombre}
+            </p>
+            <p className="card-text">Distancia: {distancia}km</p>
+            <p className="card-text">Costo: {precio}$</p>
+            <button onClick={onDelete} className="eliminar_btn btn btn-danger">
+              Eliminar
+            </button>
+          </div>
         </div>
-      </div>
+      )}{" "}
     </>
   );
 };
