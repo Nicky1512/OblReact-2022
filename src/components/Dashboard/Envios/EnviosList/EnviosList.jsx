@@ -1,8 +1,11 @@
 import "./EnviosList.css";
+import { useSelector } from "react-redux";
 
 import EnvioListItem from "./EnviosListItem/EnviosListItem";
  
-const EnviosList = ({ envios }) => {
+const EnviosList = () => {
+  const envios = useSelector((state) => state.envios);
+  console.log("Los envios en la list", envios)
   return (
     <>
       {envios.length > 0 ? (

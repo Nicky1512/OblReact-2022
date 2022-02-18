@@ -1,14 +1,24 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const EnviosForm = () => {
+
+  const categorias = useSelector((state) => state.categorias);
+  console.log("Categorias en Form", categorias);
+
   const inputPeso = useRef();
   const slcOrigen = useRef();
   const slcDestino = useRef();
   const slcCategoria = useRef();
 
+
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
+
+
+
+
 
   const onClickAddEnvio = async (e) => {
     e.preventDefault();
@@ -61,17 +71,22 @@ const EnviosForm = () => {
             placeholder="kg"
           />
         </div>
+        {categorias.length > 0 ?( 
         <div class="mb-3">
           <label for="slcOrigen" className="form-label d-block">
             Origen
           </label>
+      
           <select name="" id="slcOrigen" className="form-select">
             <option value="-1">Seleccione una ciudad</option>
-            <option value="">Europa</option>
-            <option value="">America</option>
-            <option value="">Asia</option>
+          
+            {categorias[0].map((cate) => (
+              <option value={cate.id}> {cate.nombre} </option>
+            ))}
           </select>
-        </div>
+       
+        </div>): <div class="mb-3">No hay nada</div>
+        }
         <div class="mb-3">
           <label for="slcDestino" className="form-label d-block">
             Destino

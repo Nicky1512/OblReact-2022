@@ -66,23 +66,30 @@ const onRegister = async (userData) => {
 };
 
 const getEnvios = async (userData) => {
-  const response = await fetch(
-    `${BASE_URL}envios.php?idUsuario=${userData.id}`,
-    {
-      headers: {
-        "content-type": "application/json",
-        apikey: userData.apiKey,
-      },
-      method: "GET",
-    }
-  );
-
-  if (response.status === 200) {
+  try {
+    const response = await fetch(
+      `${BASE_URL}envios.php?idUsuario=${userData.id}`,
+      {
+        headers: {
+          "content-type": "application/json",
+          apikey: userData.apiKey,
+        },
+        method: "GET",
+      }
+    );
     return response.json();
-  } else {
+
+    /*     if (response.status === 200) {
+      return response.json();
+    } else {
+      return Promise.reject({
+        message: "Ha ocurrido un error en la petición",
+        status: response.status,
+      });
+    } */
+  } catch (error) {
     return Promise.reject({
-      message: "Ha ocurrido un error en la petición",
-      status: response.status,
+      message: error.message,
     });
   }
 };
@@ -100,13 +107,30 @@ const getCategorias = async (userData) => {
     return response.json();
   } else {
     return Promise.reject({
-      message: "No se pudo realizar el envío.",
+      message: "No se pudo completar la solicitud.",
       status: response.status,
     });
   }
 };
 
-const getCiudades = async (userData) => {};
+const getCiudades = async (userData) => {
+  const response = await fetch(`${BASE_URL}ciudades.php`, {
+    headers: {
+      "content-type": "application/json",
+      apikey: userData.apiKey,
+    },
+    method: "GET",
+  });
+
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return Promise.reject({
+      message: "No se pudo completar la solicitud.",
+      status: response.status,
+    });
+  }
+};
 
 const deleteEnvio = async (userData, envio) => {};
 
@@ -130,4 +154,4 @@ const addEnvio = async (userData, envio) => {
   }
 };
 
-export { onLogin, onRegister, getEnvios, deleteEnvio, getCategorias};
+export { onLogin, onRegister, getEnvios, deleteEnvio, getCategorias };
