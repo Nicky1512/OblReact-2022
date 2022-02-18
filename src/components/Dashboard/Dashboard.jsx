@@ -1,22 +1,24 @@
 import "./Dashboard.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import Calculadora from "../Dashboard/Calculadora/Calculadora";
-import Stats from "../Dashboard/Stats/Stats";
+//import Calculadora from "../Dashboard/Calculadora/Calculadora";
+//import Stats from "../Dashboard/Stats/Stats";
 import Envios from "./Envios";
 import Gastos from "./Gastos/Gastos";
 import Header from "../Header/Header";
-import { getEnvios, getCategorias } from "../../services/serviceApi";
-import { onLoadEnvios, onGetCategorias } from "../../containers/App/actions";
+import { getEnvios, getCategorias, getCiudades } from "../../services/serviceApi";
+import { onLoadEnvios, onGetCategorias, onGetCiudades } from "../../containers/App/actions";
 
 
 
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.userLogged);
-  const envios = useSelector((state) => state.envios);
-  const categorias = useSelector((state) => state.categorias);
+ // const envios = useSelector((state) => state.envios);
+ // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
 
+
+  //Carga envíos
   useEffect(() => {
     (async () => {
       try {
@@ -33,7 +35,7 @@ const Dashboard = () => {
   }, []);
 
 
-  
+  //Carga categorias
   useEffect(() => {
     (async () => {
       try {
@@ -48,6 +50,25 @@ const Dashboard = () => {
       }
     })();
   }, []);
+
+  //Carga ciudades
+  useEffect(() => {
+    (async () => {
+      try {
+        const ciudadesResponse = await getCiudades(userLogged);
+        console.log("ciudades response", ciudadesResponse);
+        if (ciudadesResponse.codigo === 200) {
+          dispatch(onGetCiudades(ciudadesResponse.ciudades));
+        }else{
+          console.log(ciudadesResponse.codigo);
+         //TODO: cod 401-cerrar sesion 
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    })();
+  }, []);
+
 
 
   return (

@@ -5,7 +5,6 @@ import EnvioListItem from "./EnviosListItem/EnviosListItem";
  
 const EnviosList = () => {
   const envios = useSelector((state) => state.envios);
-  console.log("Los envios en la list", envios)
   return (
     <>
       {envios.length > 0 ? (
