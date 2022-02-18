@@ -1,18 +1,25 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
-
 import { FormSelect } from "../Envios/EnviosForm/EnviosForm_Select";
+import { calcularDistancia } from "../../CalculadorDistancia";
 
 const Calculadora = () => {
   const ciudades = useSelector((state) => state.ciudades);
-
   const slcOrigenRef = useRef();
   const slcDestinoRef = useRef();
 
-  const origen = slcOrigenRef.current.value;
-  const destino = slcDestinoRef.current.value;
+  const [distancia, setDistancia] = useState(0);
 
-  const calcularDistancia = (origen, destino) => {};
+  const calcular = (e) => {
+    e.preventDefault();
+    const origen = parseInt(slcOrigenRef.current.value);
+    const destino = parseInt(slcDestinoRef.current.value);
+    if (origen != -1 && destino != -1) {
+      setDistancia(calcularDistancia(origen, destino, ciudades));
+    }else{
+      alert("Debe seleccionar un destino y un origen");
+    }
+  };
 
   return (
     <div className="">
@@ -46,15 +53,19 @@ const Calculadora = () => {
             )}
             <div className="mb-3"></div>
             <div className="text-center">
-              <button type="submit" className="btn btn-dark btn-lg pr-5 pl-5">
-                Pedir
+              <button
+                onClick={calcular}
+                type="submit"
+                className="btn btn-dark btn-lg pr-5 pl-5"
+              >
+                Calcular
               </button>
             </div>
           </fieldset>
         </form>
       </div>
       <div className="mt-3">
-        <p className="border p-2">RESULTADO</p>
+        <p className="border p-2 ">RESULTADO: {distancia} km </p>
       </div>
     </div>
   );
