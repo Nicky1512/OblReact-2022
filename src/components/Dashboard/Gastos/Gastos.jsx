@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 const Gastos = () => {
 
     const gastoTotal = useSelector((state) => state.gasto);
+    console.log(gastoTotal);
     
 
     return (

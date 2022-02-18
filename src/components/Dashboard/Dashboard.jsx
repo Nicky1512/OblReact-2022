@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Envios from "./Envios";
-import Gastos from "./Gastos/Gastos";
 import Header from "../Header/Header";
 import { getEnvios, getCategorias, getCiudades } from "../../services/serviceApi";
 import { onLoadEnvios, onGetCategorias, onGetCiudades } from "../../containers/App/actions";
@@ -15,7 +14,7 @@ const Dashboard = () => {
  // const envios = useSelector((state) => state.envios);
  // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
-  let sum = 0;
+
 
 
   //Carga envíos
@@ -24,6 +23,7 @@ const Dashboard = () => {
       try {
         const enviosResponse = await getEnvios(userLogged);
         if (enviosResponse.codigo === 200) {  
+          let sum = 0;
           enviosResponse.envios.forEach(function(envio){
             sum += envio.precio;
            });
@@ -32,7 +32,7 @@ const Dashboard = () => {
             gastoTotal:  sum
 
           }
-          console.log(payload);
+        
           dispatch(onLoadEnvios(payload));
           //dispatch(onLoadEnvios(enviosResponse.envios));
         }else{
@@ -87,7 +87,7 @@ const Dashboard = () => {
       {
         <div className="container-fluid">
           <Envios />
-          <Gastos />
+       
         </div>
       }
       {/* <div className="container">
