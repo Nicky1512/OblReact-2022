@@ -1,4 +1,10 @@
-import {ON_USER_LOGGED, ON_LOAD_ENVIOS, ON_ADD_ENVIO, ON_DELETE_ENVIO, GET_CATEGORIAS, GET_DEPTOS, GET_CIUDADES} from './constants';
+import {ON_USER_LOGGED, ON_LOAD_ENVIOS, ON_ADD_ENVIO, ON_DELETE_ENVIO, GET_CATEGORIAS, GET_DEPTOS, GET_CIUDADES, ON_USER_LOGOUT} from './constants';
+
+const onUserLogout = () => {
+    return {
+        type: ON_USER_LOGOUT
+    };
+};
 
 const onUserLogged = (data) => {
     return {

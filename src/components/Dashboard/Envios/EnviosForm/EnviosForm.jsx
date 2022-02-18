@@ -2,7 +2,7 @@ import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { onAddEnvio } from "../../../../containers/App/actions";
 import { addEnvio } from "../../../../services/serviceApi";
-import { FormSelect } from "../EnviosForm/EnviosForm_Select";
+import { FormSelect } from "./EnviosForm_Select";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
