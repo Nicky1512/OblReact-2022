@@ -1,4 +1,4 @@
-import {ON_USER_LOGGED, ON_LOAD_ENVIOS, ON_ADD_ENVIO, ON_DELETE_ENVIO, GET_CATEGORIAS} from './constants';
+import {ON_USER_LOGGED, ON_LOAD_ENVIOS, ON_ADD_ENVIO, ON_DELETE_ENVIO, GET_CATEGORIAS, GET_DEPTOS, GET_CIUDADES} from './constants';
 
 const onUserLogged = (data) => {
     return {
@@ -7,9 +7,23 @@ const onUserLogged = (data) => {
     };
 };
 
-const getCategorias = (data) => {
+const onGetCategorias = (data) => {
     return {
         type: GET_CATEGORIAS,
+        payload: data
+    };
+};
+
+const onGetCiudades = (data) => {
+    return {
+        type: GET_CIUDADES,
+        payload: data
+    };
+};
+
+const onGetDeptos = (data) => {
+    return {
+        type: GET_DEPTOS,
         payload: data
     };
 };
@@ -39,4 +53,4 @@ const onDeleteEnvio = (id) => {
 
 
 
-export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, getCategorias};
+export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onGetCategorias};
