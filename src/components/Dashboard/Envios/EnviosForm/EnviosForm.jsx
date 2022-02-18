@@ -1,11 +1,10 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { FormSelect } from "../EnviosForm/EnviosForm_Select";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
   const ciudades = useSelector((state) => state.ciudades);
-  console.log("Ciudades Form", ciudades);
 
   const inputPeso = useRef();
   const slcOrigen = useRef();
@@ -22,7 +21,7 @@ const EnviosForm = () => {
     const destino = slcDestino.current.value;
     const categoria = slcCategoria.current.value;
 
-    if (peso == "" || origen == -1 || destino == -1 || categoria == -1) {
+    if (peso === "" || origen === -1 || destino === -1 || categoria === -1) {
       alert("Debe completar todos los campos");
     } else {
       const envio = {
