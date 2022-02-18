@@ -3,49 +3,27 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAddEnvio } from "../../../../containers/App/actions";
 import { addEnvio } from "../../../../services/serviceApi";
 import { FormSelect } from "./EnviosForm_Select";
-import { getDistance } from "geolib";
+import { calcularDistancia } from "../../../CalculadorDistancia";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
   const ciudades = useSelector((state) => state.ciudades);
- 
+
   const precioBase = 50;
   const inputPesoRef = useRef();
   const slcOrigenRef = useRef();
   const slcDestinoRef = useRef();
   const slcCategoriaRef = useRef();
 
-
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
 
-  const calcularDistancia = () => {
-    
-    const distance = getDistance(
-     
-      {
-        latitude: (ciudades.find(ciudad => ciudad.id === parseInt(slcOrigenRef.current.value))).latitud,
-        longitude: (ciudades.find(ciudad => ciudad.id === parseInt(slcOrigenRef.current.value))).longitud,
-      },
-      {
-        latitude: (ciudades.find(ciudad => ciudad.id === parseInt(slcDestinoRef.current.value))).latitud,
-        longitude: (ciudades.find(ciudad => ciudad.id === parseInt(slcDestinoRef.current.value))).longitud,
-      } 
-    );
-
-    return distance / 1000;
-  };
-
- 
-
-  
   //const distancia = 110;
 
   const onClickAddEnvio = async (e) => {
-    
-   // console.log("origen", slcOrigenRef.current.value, "destino" slcOrigenRef)
-   // const test = ciudades.find(ciudad => ciudad.id === (parseInt(slcOrigenRef.current.value)))
-  //  console.log(test)
+    // console.log("origen", slcOrigenRef.current.value, "destino" slcOrigenRef)
+    // const test = ciudades.find(ciudad => ciudad.id === (parseInt(slcOrigenRef.current.value)))
+    //  console.log(test)
     //console.log(calcularDistancia());
 
     e.preventDefault();
@@ -53,19 +31,24 @@ const EnviosForm = () => {
     const origen = slcOrigenRef.current.value;
     const destino = slcDestinoRef.current.value;
     const categoria = slcCategoriaRef.current.value;
-    const distancia = calcularDistancia();
-    const precio = calcularCosto(distancia, peso);
 
     if (
       peso === "" ||
       origen === "-1" ||
       destino === "-1" ||
-      categoria === "-1" 
+      categoria === "-1"
     ) {
       alert("Debe completar todos los campos.");
-    } else if(origen === destino){
+    } else if (origen === destino) {
       alert("El origen no puede ser el mismo que el destino.");
     } else {
+      const distancia = calcularDistancia(
+        parseInt(origen),
+        parseInt(destino),
+        ciudades
+      );
+      const precio = calcularCosto(distancia, peso);
+
       const envio = {
         distancia: distancia,
         idCategoria: categoria,
@@ -99,13 +82,8 @@ const EnviosForm = () => {
 
   
 
-
   const calcularCosto = (distancia, peso) => {
-    return (
-      precioBase +
-      10 * peso +
-      (Math.floor(distancia) / 100) * 50
-    );
+    return precioBase + 10 * peso + (Math.floor(distancia) / 100) * 50;
   };
 
   return (
@@ -170,6 +148,7 @@ const EnviosForm = () => {
             >
               Pedir
             </button>
+    
           </div>
         </fieldset>
       </form>

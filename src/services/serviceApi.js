@@ -133,6 +133,25 @@ const getCiudades = async (userData) => {
   }
 };
 
+const getDeptos = async (userData) => {
+  const response = await fetch(`${BASE_URL}departamentos.php`, {
+    headers: {
+      "content-type": "application/json",
+      apikey: userData.apiKey,
+    },
+    method: "GET",
+  });
+
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return Promise.reject({
+      message: "No se pudo completar la solicitud.",
+      status: response.status,
+    });
+  }
+};
+
 const deleteEnvio = async (envio, userData) => {
   const response = await fetch(`${BASE_URL}envios.php`, {
     headers: {
@@ -181,4 +200,5 @@ export {
   getCategorias,
   getCiudades,
   addEnvio,
+  getDeptos
 };

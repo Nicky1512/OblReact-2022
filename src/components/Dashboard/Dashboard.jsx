@@ -3,9 +3,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Envios from "./Envios";
+import Calculadora from './Calculadora'
 import Header from "../Header/Header";
-import { getEnvios, getCategorias, getCiudades } from "../../services/serviceApi";
-import { onLoadEnvios, onGetCategorias, onGetCiudades } from "../../containers/App/actions";
+import { getEnvios, getCategorias, getCiudades, getDeptos } from "../../services/serviceApi";
+import { onLoadEnvios, onGetCategorias, onGetCiudades, onGetDeptos } from "../../containers/App/actions";
 
 
 
@@ -80,6 +81,24 @@ const Dashboard = () => {
   }, []);
 
 
+   //Carga ciudades
+   useEffect(() => {
+    (async () => {
+      try {
+        const response = await getDeptos(userLogged);
+    
+        if (response.codigo === 200) {
+          dispatch(onGetDeptos(response.departamentos));
+        }else{
+          console.log(response.codigo);
+         //TODO: cod 401-cerrar sesion 
+        }
+      } catch (error) {
+        console.log(error.message);
+      }
+    })();
+  }, []);
+
 
   return (
     <>
@@ -87,6 +106,7 @@ const Dashboard = () => {
       {
         <div className="container-fluid">
           <Envios />
+          
        
         </div>
       }
