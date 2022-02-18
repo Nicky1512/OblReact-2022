@@ -154,7 +154,6 @@ const deleteEnvio = async (envio, userData) => {
 };
 
 const addEnvio = async (envio, userData) => {
-  console.log("Envio en service", envio);
   const response = await fetch(`${BASE_URL}envios.php`, {
     headers: {
       "content-type": "application/json",
@@ -163,7 +162,6 @@ const addEnvio = async (envio, userData) => {
     body: JSON.stringify(envio),
     method: "POST",
   });
-  console.log("Response add envio", response);
 
   if (response.status === 200) {
     return response.json();

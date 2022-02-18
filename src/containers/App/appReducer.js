@@ -25,7 +25,7 @@ const appReducer = (state = initialState, action) => {
     case ON_LOAD_ENVIOS:
       return { ...state, envios: payload.envios, gasto: payload.gastoTotal  };
     case ON_ADD_ENVIO:
-      return { ...state, envios: [...state.envios, payload], gasto: [state.gasto + parseFloat(payload.precio)] };
+      return { ...state, envios: [...state.envios, payload], gasto: state.gasto += parseFloat(payload.precio) };
     case GET_CATEGORIAS:
       return { ...state, categorias: payload };
     case GET_CIUDADES:
