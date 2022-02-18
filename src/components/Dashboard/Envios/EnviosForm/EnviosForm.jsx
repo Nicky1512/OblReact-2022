@@ -8,6 +8,7 @@ const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
   const ciudades = useSelector((state) => state.ciudades);
 
+  const precioBase = 50;
   const inputPesoRef = useRef();
   const slcOrigenRef = useRef();
   const slcDestinoRef = useRef();
@@ -15,6 +16,9 @@ const EnviosForm = () => {
 
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
+
+ // const distancia = calcularDistancia();
+ const distancia = 110
 
   const onClickAddEnvio = async (e) => {
     console.log("El usuario logged", userLogged);
@@ -24,6 +28,7 @@ const EnviosForm = () => {
     const origen = slcOrigenRef.current.value;
     const destino = slcDestinoRef.current.value;
     const categoria = slcCategoriaRef.current.value;
+    const precio = calcularCosto();
 
     if (
       peso === "" ||
@@ -34,13 +39,13 @@ const EnviosForm = () => {
       alert("Debe completar todos los campos");
     } else {
       const envio = {
-        distancia: 2.32, //TODO: cambiar por distancia calculada
+        distancia: distancia,
         idCategoria: categoria,
         idCiudadDestino: destino,
         idCiudadOrigen: origen,
         idUsuario: userLogged.id,
         peso: peso,
-        precio: 43.56, //TODO: cambiar por costo calculado
+        precio: precio
       };
       try {
         const response = await addEnvio(envio, userLogged);
@@ -48,18 +53,15 @@ const EnviosForm = () => {
           const newEnvio = {
             ciudad_destino: parseInt(destino),
             ciudad_origen: parseInt(origen),
-            distancia: 2.32,
+            distancia: distancia,
             id: response.idEnvio,
             id_categoria: categoria,
             id_usuario: userLogged.id,
             peso: peso,
-            precio: 43.56,
+            precio: precio
           };
           dispatch(onAddEnvio(newEnvio));
         }
-
-        
-        
       } catch (error) {
         // console.log(error.response);
         alert(error.message);
@@ -67,7 +69,14 @@ const EnviosForm = () => {
     }
   };
 
-  const calcularCosto = (peso, distancia) => {};
+  const calcularDistancia = () => {};
+  const calcularCosto = () => {
+    return (
+      precioBase +
+      10 * inputPesoRef.current.value +
+      (parseInt(distancia) / 100) * 50
+    );
+  };
 
   return (
     <div>
