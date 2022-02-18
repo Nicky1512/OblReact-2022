@@ -1,4 +1,4 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { onDeleteEnvio } from "../../../../../containers/App/actions";
 import { deleteEnvio } from "../../../../../services/serviceApi";
 
@@ -11,14 +11,20 @@ const EnvioListItem = ({
 }) => {
   const userLogged = useSelector((state) => state.userLogged);
   const ciudades = useSelector((state) => state.ciudades);
+
+  const dispatch = useDispatch();
   const onDelete = async () => {
-    console.log("borrar el envio", id);
-    // try {
-    //   await deleteEnvio(id, userLogged)
-    //   dispatch(onDeleteEnvio(id))
-    // } catch (error) {
-    //   alert(error.message)
-    // }
+    //console.log("borrar el envio", id);
+    const envioAborrar = {
+      idEnvio: id 
+    };
+    try {
+      const response = await deleteEnvio(envioAborrar, userLogged);   
+      console.log(response);
+      dispatch(onDeleteEnvio(id));
+    } catch (error) {
+      alert(error.message);
+    }
   };
 
   return (

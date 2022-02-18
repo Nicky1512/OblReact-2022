@@ -100,6 +100,7 @@ const getCategorias = async (userData) => {
       "content-type": "application/json",
       apikey: userData.apiKey,
     },
+
     method: "GET",
   });
 
@@ -132,10 +133,28 @@ const getCiudades = async (userData) => {
   }
 };
 
-const deleteEnvio = async (userData, envio) => {};
+const deleteEnvio = async (envio, userData) => {
+  const response = await fetch(`${BASE_URL}envios.php`, {
+    headers: {
+      "content-type": "application/json",
+      apikey: userData.apiKey,
+    },
+    body: JSON.stringify(envio),
+    method: "DELETE",
+  });
+
+  if (response.status === 200) {
+    return response.json();
+  } else {
+    return Promise.reject({
+      message: "Ha ocurrido un error en la petición",
+      status: response.status,
+    });
+  }
+};
 
 const addEnvio = async (envio, userData) => {
-  console.log("Envio en service", envio)
+  console.log("Envio en service", envio);
   const response = await fetch(`${BASE_URL}envios.php`, {
     headers: {
       "content-type": "application/json",
@@ -156,4 +175,12 @@ const addEnvio = async (envio, userData) => {
   }
 };
 
-export { onLogin, onRegister, getEnvios, deleteEnvio, getCategorias, getCiudades, addEnvio };
+export {
+  onLogin,
+  onRegister,
+  getEnvios,
+  deleteEnvio,
+  getCategorias,
+  getCiudades,
+  addEnvio,
+};
