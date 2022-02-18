@@ -2,7 +2,6 @@ import EnviosList from "./EnviosList";
 import EnviosForm from "./EnviosForm";
 
 const Envios = ({envios, categorias}) => {
-  console.log("Envios en envios", envios);
   return (
     <div className="container-fluid">
       <div className="row">

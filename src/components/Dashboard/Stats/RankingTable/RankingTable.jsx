@@ -3,7 +3,7 @@ const RankingTable = () => {
     return (
       <div className="border p-3 mb-4">
         <h1>Ranking</h1>
-        <table class="table">
+        <table className="table">
           <thead>
             <tr>
               <th scope="col">#</th>

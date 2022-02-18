@@ -1,4 +1,19 @@
+import { useRef } from "react";
+import { useSelector } from "react-redux";
+
+import { FormSelect } from "../EnviosForm/EnviosForm_Select";
+
 const Calculadora = () => {
+  const ciudades = useSelector((state) => state.ciudades);
+
+  const slcOrigenRef = useRef();
+  const slcDestinoRef = useRef();
+
+  const origen = slcOrigenRef.current.value;
+  const destino = slcDestinoRef.current.value;
+
+  const calcularDistancia = (origen, destino) => {};
+
   return (
     <div className="">
       <h1>Calculadora</h1>
@@ -6,30 +21,35 @@ const Calculadora = () => {
         <form>
           <fieldset>
             <legend>Calcular distancia</legend>
-            <div class="mb-3">
-              <label for="slcOrigen" className="form-label d-block">
-                Origen
-              </label>
-              <select name="" id="slcOrigen" className="form-select">
-                <option value="">Europa</option>
-                <option value="">America</option>
-                <option value="">Asia</option>
-              </select>
+            {ciudades.length > 0 ? (
+              <FormSelect
+                list={ciudades}
+                slcID="slcOrigen"
+                defaultOption="Seleccione un origen"
+                txtLabel="Origen"
+                slcRef={slcOrigenRef}
+              />
+            ) : (
+              <div className="mb-3">Cargando...</div>
+            )}
+
+            {ciudades.length > 0 ? (
+              <FormSelect
+                list={ciudades}
+                slcID="slcDestino"
+                defaultOption="Seleccione un destino"
+                txtLabel="Destino"
+                slcRef={slcDestinoRef}
+              />
+            ) : (
+              <div className="mb-3">Cargando...</div>
+            )}
+            <div className="mb-3"></div>
+            <div className="text-center">
+              <button type="submit" className="btn btn-dark btn-lg pr-5 pl-5">
+                Pedir
+              </button>
             </div>
-            <div class="mb-3">
-              <label for="slcDestino" className="form-label d-block">
-                Destino
-              </label>
-              <select name="" id="slcDestino" className="form-select">
-                <option value="">Europa</option>
-                <option value="">America</option>
-                <option value="">Asia</option>
-              </select>
-            </div>
-            <div class="mb-3"></div>
-            <button type="submit" class="btn btn-primary">
-              Calcular
-            </button>
           </fieldset>
         </form>
       </div>
