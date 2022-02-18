@@ -154,4 +154,4 @@ const addEnvio = async (userData, envio) => {
   }
 };
 
-export { onLogin, onRegister, getEnvios, deleteEnvio, getCategorias };
+export { onLogin, onRegister, getEnvios, deleteEnvio, getCategorias, getCiudades };

@@ -53,4 +53,4 @@ const onDeleteEnvio = (id) => {
 
 
 
-export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onGetCategorias};
+export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onGetCategorias, onGetCiudades, onGetDeptos};

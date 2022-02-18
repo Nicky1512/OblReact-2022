@@ -1,24 +1,19 @@
 import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { FormSelect } from "../EnviosForm/EnviosForm_Select";
 
 const EnviosForm = () => {
-
   const categorias = useSelector((state) => state.categorias);
-  console.log("Categorias en Form", categorias);
+  const ciudades = useSelector((state) => state.ciudades);
+  console.log("Ciudades Form", ciudades);
 
   const inputPeso = useRef();
   const slcOrigen = useRef();
   const slcDestino = useRef();
   const slcCategoria = useRef();
 
-
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
-
-
-
-
 
   const onClickAddEnvio = async (e) => {
     e.preventDefault();
@@ -42,19 +37,9 @@ const EnviosForm = () => {
     }
   };
 
+  const calcularDistancia = (origen, destino) => {};
 
- 
-  const calcularDistancia = (origen, destino) =>{
-
-
-  };
-
-  const calcularCosto = (peso, distancia) =>{
-
-    
-  };
-
-
+  const calcularCosto = (peso, distancia) => {};
 
   return (
     <form>
@@ -71,45 +56,40 @@ const EnviosForm = () => {
             placeholder="kg"
           />
         </div>
-        {categorias.length > 0 ?( 
-        <div class="mb-3">
-          <label for="slcOrigen" className="form-label d-block">
-            Origen
-          </label>
-      
-          <select name="" id="slcOrigen" className="form-select">
-            <option value="-1">Seleccione una ciudad</option>
-          
-            {categorias[0].map((cate) => (
-              <option value={cate.id}> {cate.nombre} </option>
-            ))}
-          </select>
-       
-        </div>): <div class="mb-3">No hay nada</div>
-        }
-        <div class="mb-3">
-          <label for="slcDestino" className="form-label d-block">
-            Destino
-          </label>
-          <select name="" id="slcDestino" className="form-select">
-            <option value="-1">Seleccione una ciudad</option>
-            <option value="">Europa</option>
-            <option value="">America</option>
-            <option value="">Asia</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="slcCategoria" className="form-label d-block">
-            Categoria
-          </label>
-          <select name="" id="slcCategoria" className="form-select">
-            <option value="-1">Seleccione una categoria</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
-          </select>
-        </div>
-        <div class="mb-3"></div>
+
+
+        {ciudades.length > 0 ? (
+          <FormSelect
+            list={ciudades}
+            slcID="slcOrigen"
+            defaultOption="Seleccione un origen"
+            txtLabel="Origen"
+          />
+        ) : (
+          <div class="mb-3">Cargando...</div>
+        )}
+
+        {ciudades.length > 0 ? (
+          <FormSelect
+            list={ciudades}
+            slcID="slcDestino"
+            defaultOption="Seleccione un destino"
+            txtLabel="Destino"
+          />
+        ) : (
+          <div class="mb-3">Cargando...</div>
+        )}
+
+        {categorias.length > 0 ? (
+          <FormSelect
+            list={categorias}
+            slcID="slcCategoria"
+            defaultOption="Seleccione una categoria"
+            txtLabel="Categoria"
+          />
+        ) : (
+          <div class="mb-3">Cargando...</div>
+        )}
         <button type="submit" class="btn btn-primary">
           Pedir
         </button>
