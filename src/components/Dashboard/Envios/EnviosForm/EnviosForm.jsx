@@ -1,24 +1,17 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
-
 const EnviosForm = () => {
-
   const categorias = useSelector((state) => state.categorias);
-  console.log("Categorias en Form", categorias);
+  const ciudades = useSelector((state) => state.ciudades);
 
   const inputPeso = useRef();
   const slcOrigen = useRef();
   const slcDestino = useRef();
   const slcCategoria = useRef();
 
-
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
-
-
-
-
 
   const onClickAddEnvio = async (e) => {
     e.preventDefault();
@@ -27,7 +20,7 @@ const EnviosForm = () => {
     const destino = slcDestino.current.value;
     const categoria = slcCategoria.current.value;
 
-    if (peso == "" || origen == -1 || destino == -1 || categoria == -1) {
+    if (peso === "" || origen === -1 || destino === -1 || categoria === -1) {
       alert("Debe completar todos los campos");
     } else {
       const envio = {
@@ -42,19 +35,9 @@ const EnviosForm = () => {
     }
   };
 
+  const calcularDistancia = (origen, destino) => {};
 
- 
-  const calcularDistancia = (origen, destino) =>{
-
-
-  };
-
-  const calcularCosto = (peso, distancia) =>{
-
-    
-  };
-
-
+  const calcularCosto = (peso, distancia) => {};
 
   return (
     <form>
@@ -71,42 +54,41 @@ const EnviosForm = () => {
             placeholder="kg"
           />
         </div>
-        {categorias.length > 0 ?( 
+        {categorias.length > 0 ? (
+          <div class="mb-3">
+            <label for="slcOrigen" className="form-label d-block">
+              Categoria
+            </label>
+
+            <select name="" id="slcOrigen" className="form-select">
+              <option value="-1">Seleccione una categoria</option>
+
+              {categorias[0].map((cate) => (
+                <option value={cate.id}> {cate.nombre} </option>
+              ))}
+            </select>
+          </div>
+        ) : (
+          <div class="mb-3">No hay nada</div>
+        )}
         <div class="mb-3">
-          <label for="slcOrigen" className="form-label d-block">
+          <label for="slcCategoria" className="form-label d-block">
             Origen
           </label>
-      
-          <select name="" id="slcOrigen" className="form-select">
+          <select name="" id="slcCategoria" className="form-select">
             <option value="-1">Seleccione una ciudad</option>
-          
-            {categorias[0].map((cate) => (
-              <option value={cate.id}> {cate.nombre} </option>
-            ))}
+            {/* {ciudades[0].map((c) => (
+              <option value={c.id}> {c.nombre} </option>
+            ))} */}
           </select>
-       
-        </div>): <div class="mb-3">No hay nada</div>
-        }
+        </div>
         <div class="mb-3">
           <label for="slcDestino" className="form-label d-block">
             Destino
           </label>
           <select name="" id="slcDestino" className="form-select">
             <option value="-1">Seleccione una ciudad</option>
-            <option value="">Europa</option>
-            <option value="">America</option>
-            <option value="">Asia</option>
-          </select>
-        </div>
-        <div class="mb-3">
-          <label for="slcCategoria" className="form-label d-block">
-            Categoria
-          </label>
-          <select name="" id="slcCategoria" className="form-select">
-            <option value="-1">Seleccione una categoria</option>
-            <option value="">1</option>
-            <option value="">2</option>
-            <option value="">3</option>
+            <option value="">{}</option>
           </select>
         </div>
         <div class="mb-3"></div>
