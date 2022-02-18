@@ -1,8 +1,8 @@
-import React from "react";
+/* import React from "react";
 import { useSelector } from "react-redux";
 import { Navigate, Route } from "react-router-dom";
 
-const RouterLinks = ({ component: Component, ...rest }) => {
+const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.userLogged);
   if (user) {
     return (
@@ -18,4 +18,4 @@ const RouterLinks = ({ component: Component, ...rest }) => {
   );
 };
 
-export default RouterLinks;
+export default PrivateRoute; */

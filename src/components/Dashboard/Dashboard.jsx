@@ -1,8 +1,7 @@
 import "./Dashboard.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-//import Calculadora from "../Dashboard/Calculadora/Calculadora";
-//import Stats from "../Dashboard/Stats/Stats";
+
 import Envios from "./Envios";
 import Gastos from "./Gastos/Gastos";
 import Header from "../Header/Header";
