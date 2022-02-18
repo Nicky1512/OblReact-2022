@@ -1,38 +1,54 @@
 import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { onAddEnvio } from "../../../../containers/App/actions";
+import { addEnvio } from "../../../../services/serviceApi";
 import { FormSelect } from "../EnviosForm/EnviosForm_Select";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
   const ciudades = useSelector((state) => state.ciudades);
+  console.log("ciudades En form", ciudades);
 
-  const inputPeso = useRef();
-  const slcOrigen = useRef();
-  const slcDestino = useRef();
-  const slcCategoria = useRef();
+  const inputPesoRef = useRef();
+  const slcOrigenRef = useRef();
+  const slcDestinoRef = useRef();
+  const slcCategoriaRef = useRef();
 
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
 
   const onClickAddEnvio = async (e) => {
-    e.preventDefault();
-    const peso = inputPeso.current.value;
-    const origen = slcOrigen.current.value;
-    const destino = slcDestino.current.value;
-    const categoria = slcCategoria.current.value;
+    console.log("El usuario logged", userLogged);
 
-    if (peso === "" || origen === -1 || destino === -1 || categoria === -1) {
+    e.preventDefault();
+    const peso = inputPesoRef.current.value;
+    const origen = slcOrigenRef.current.value;
+    const destino = slcDestinoRef.current.value;
+    const categoria = slcCategoriaRef.current.value;
+
+    if (peso === "" ||  origen === "-1" ||  destino === "-1" ||  categoria === "-1"
+    ) {
       alert("Debe completar todos los campos");
     } else {
       const envio = {
-        idUsuario: userLogged.id,
-        idCiudadOrigen: origen,
-        idCiudadDestino: destino,
-        peso: peso,
-        distancia: 2.32,
-        precio: 43.56,
+        distancia: 2.32, //TODO: cambiar por distancia calculada
         idCategoria: categoria,
+        idCiudadDestino: destino,
+        idCiudadOrigen: origen,
+        idUsuario: userLogged.id,
+        peso: peso,
+        precio: 43.56, //TODO: cambiar por costo calculado
       };
+      console.log(envio);
+      //TODO: Da error 401 cada vez
+      try {
+        const response = await addEnvio(envio, userLogged);
+         dispatch(onAddEnvio(response));
+
+      } catch (error) {
+        // console.log(error.response);
+        alert(error.message);
+      }
     }
   };
 
@@ -51,11 +67,11 @@ const EnviosForm = () => {
           <input
             type="number"
             id="inputPeso"
-            class="form-control"
+            className="form-control"
             placeholder="kg"
+            ref={inputPesoRef}
           />
         </div>
-
 
         {ciudades.length > 0 ? (
           <FormSelect
@@ -63,6 +79,7 @@ const EnviosForm = () => {
             slcID="slcOrigen"
             defaultOption="Seleccione un origen"
             txtLabel="Origen"
+            slcRef={slcOrigenRef}
           />
         ) : (
           <div class="mb-3">Cargando...</div>
@@ -74,6 +91,7 @@ const EnviosForm = () => {
             slcID="slcDestino"
             defaultOption="Seleccione un destino"
             txtLabel="Destino"
+            slcRef={slcDestinoRef}
           />
         ) : (
           <div class="mb-3">Cargando...</div>
@@ -85,11 +103,12 @@ const EnviosForm = () => {
             slcID="slcCategoria"
             defaultOption="Seleccione una categoria"
             txtLabel="Categoria"
+            slcRef={slcCategoriaRef}
           />
         ) : (
           <div class="mb-3">Cargando...</div>
         )}
-        <button type="submit" class="btn btn-primary">
+        <button onClick={onClickAddEnvio} type="submit" class="btn btn-primary">
           Pedir
         </button>
       </fieldset>

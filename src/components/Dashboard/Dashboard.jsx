@@ -56,7 +56,7 @@ const Dashboard = () => {
     (async () => {
       try {
         const ciudadesResponse = await getCiudades(userLogged);
-        console.log("ciudades response", ciudadesResponse);
+    
         if (ciudadesResponse.codigo === 200) {
           dispatch(onGetCiudades(ciudadesResponse.ciudades));
         }else{

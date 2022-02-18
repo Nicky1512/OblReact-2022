@@ -1,18 +1,19 @@
-const FormSelect = ({list, slcID, defaultOption, txtLabel}) => {
+const FormSelect = ({list, slcID, defaultOption, txtLabel, slcRef}) => {
 
 
   return (
     <>
       <div class="mb-3">
-        <label for={slcID} className="form-label d-block">
+        <label htmlFor={slcID} className="form-label d-block">
           {txtLabel}
         </label>
-        <select name="" id={slcID} className="form-select">
+        <select name="" id={slcID} className="form-select" ref={slcRef}>
           <option value="-1">{defaultOption}</option>
-          {list[0].map((cate) => (
+          {list.map((cate) => (
               <option value={cate.id}> {cate.nombre} </option>
             ))}
         </select>
+
       </div>
      
     </>
