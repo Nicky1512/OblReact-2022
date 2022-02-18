@@ -7,7 +7,6 @@ import { FormSelect } from "../EnviosForm/EnviosForm_Select";
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
   const ciudades = useSelector((state) => state.ciudades);
-  console.log("ciudades En form", ciudades);
 
   const inputPesoRef = useRef();
   const slcOrigenRef = useRef();
@@ -26,7 +25,11 @@ const EnviosForm = () => {
     const destino = slcDestinoRef.current.value;
     const categoria = slcCategoriaRef.current.value;
 
-    if (peso === "" ||  origen === "-1" ||  destino === "-1" ||  categoria === "-1"
+    if (
+      peso === "" ||
+      origen === "-1" ||
+      destino === "-1" ||
+      categoria === "-1"
     ) {
       alert("Debe completar todos los campos");
     } else {
@@ -43,8 +46,7 @@ const EnviosForm = () => {
       //TODO: Da error 401 cada vez
       try {
         const response = await addEnvio(envio, userLogged);
-         dispatch(onAddEnvio(response));
-
+        dispatch(onAddEnvio(response));
       } catch (error) {
         // console.log(error.response);
         alert(error.message);
@@ -52,67 +54,74 @@ const EnviosForm = () => {
     }
   };
 
-  const calcularDistancia = (origen, destino) => {};
-
   const calcularCosto = (peso, distancia) => {};
 
   return (
-    <form>
-      <fieldset>
-        <legend>Nuevo Pedido</legend>
-        <div class="mb-3">
-          <label for="inputPeso" class="form-label">
-            Peso
-          </label>
-          <input
-            type="number"
-            id="inputPeso"
-            className="form-control"
-            placeholder="kg"
-            ref={inputPesoRef}
-          />
-        </div>
+    <div>
+      <h1 className="text-center">Nuevo</h1>
+      <form>
+        <fieldset>
+          <legend>Nuevo Pedido</legend>
+          <div className="mb-3">
+            <label htmlFor="inputPeso" className="form-label">
+              Peso
+            </label>
+            <input
+              type="number"
+              id="inputPeso"
+              className="form-control"
+              placeholder="kg"
+              ref={inputPesoRef}
+            />
+          </div>
 
-        {ciudades.length > 0 ? (
-          <FormSelect
-            list={ciudades}
-            slcID="slcOrigen"
-            defaultOption="Seleccione un origen"
-            txtLabel="Origen"
-            slcRef={slcOrigenRef}
-          />
-        ) : (
-          <div class="mb-3">Cargando...</div>
-        )}
+          {ciudades.length > 0 ? (
+            <FormSelect
+              list={ciudades}
+              slcID="slcOrigen"
+              defaultOption="Seleccione un origen"
+              txtLabel="Origen"
+              slcRef={slcOrigenRef}
+            />
+          ) : (
+            <div className="mb-3">Cargando...</div>
+          )}
 
-        {ciudades.length > 0 ? (
-          <FormSelect
-            list={ciudades}
-            slcID="slcDestino"
-            defaultOption="Seleccione un destino"
-            txtLabel="Destino"
-            slcRef={slcDestinoRef}
-          />
-        ) : (
-          <div class="mb-3">Cargando...</div>
-        )}
+          {ciudades.length > 0 ? (
+            <FormSelect
+              list={ciudades}
+              slcID="slcDestino"
+              defaultOption="Seleccione un destino"
+              txtLabel="Destino"
+              slcRef={slcDestinoRef}
+            />
+          ) : (
+            <div className="mb-3">Cargando...</div>
+          )}
 
-        {categorias.length > 0 ? (
-          <FormSelect
-            list={categorias}
-            slcID="slcCategoria"
-            defaultOption="Seleccione una categoria"
-            txtLabel="Categoria"
-            slcRef={slcCategoriaRef}
-          />
-        ) : (
-          <div class="mb-3">Cargando...</div>
-        )}
-        <button onClick={onClickAddEnvio} type="submit" class="btn btn-primary">
-          Pedir
-        </button>
-      </fieldset>
-    </form>
+          {categorias.length > 0 ? (
+            <FormSelect
+              list={categorias}
+              slcID="slcCategoria"
+              defaultOption="Seleccione una categoria"
+              txtLabel="Categoria"
+              slcRef={slcCategoriaRef}
+            />
+          ) : (
+            <div className="mb-3">Cargando...</div>
+          )}
+          <div className="text-center">
+            <button
+              onClick={onClickAddEnvio}
+              type="submit"
+              className="btn btn-dark btn-lg pr-5 pl-5"
+            >
+              Pedir
+            </button>
+          </div>
+        </fieldset>
+      </form>
+    </div>
   );
 };
 
