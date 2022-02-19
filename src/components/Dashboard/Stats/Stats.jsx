@@ -26,9 +26,10 @@ const Stats = () => {
   };
 
 
+ 
   const enviosXDepartamento = () => {
     const enviosCiudadList = enviosXCiudad();
-    console.log("Envios x Ciudad", enviosCiudadList);
+   // console.log("Envios x Ciudad", enviosCiudadList);
 
     const totalEnviosDepto = (deptoId) =>
       enviosCiudadList
@@ -47,15 +48,17 @@ const Stats = () => {
         enviosxDeptoList.push(envioDepto_Element);
       }
     });
-    console.log("Envios x departamento", enviosxDeptoList);
+   // console.log("Envios x departamento", enviosxDeptoList);
     return enviosxDeptoList;
   };
 
-  enviosXDepartamento();
+
+  const enviosDepto = enviosXDepartamento();
+  //enviosXDepartamento();
 
   return (
     <>
-      <RankingTable />
+      <RankingTable datos={enviosDepto}/>
       <div>
         <h1>Graphs</h1>
         <div className="container">

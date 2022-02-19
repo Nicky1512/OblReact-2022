@@ -72,7 +72,7 @@ const Dashboard = () => {
         
         if (ciudadesResponse.codigo === 200) {
           dispatch(onGetCiudades(ciudadesResponse.ciudades));
-          console.log(ciudadesResponse.ciudades)
+         
          
         }else{
           console.log(ciudadesResponse.codigo);
@@ -93,7 +93,7 @@ const Dashboard = () => {
     
         if (response.codigo === 200) {
           dispatch(onGetDeptos(response.departamentos));
-          console.log(response.departamentos)
+         
         }else{
           console.log(response.codigo);
          //TODO: cod 401-cerrar sesion 

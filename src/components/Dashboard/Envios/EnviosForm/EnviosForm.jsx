@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { onAddEnvio } from "../../../../containers/App/actions";
 import { addEnvio } from "../../../../services/serviceApi";
 import { FormSelect } from "./EnviosForm_Select";
-import { calcularDistancia } from "../../../CalculadorDistancia";
+import { calcularDistancia } from "../../../Calculadora/CalculadorDistancia";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
