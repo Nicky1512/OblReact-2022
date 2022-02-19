@@ -112,15 +112,14 @@ const Dashboard = () => {
         <div className="container-fluid">
           <Stats/>
           <Envios />
- 
         </div>
       }
       {/* <div className="container">
         <Calculadora />
       </div> */}
-      {/*<div className="container-fluid">
+      {/* <div className="container-fluid">
         <Stats />
-    </div>*/}
+    </div> */}
     </>
   );
 };
