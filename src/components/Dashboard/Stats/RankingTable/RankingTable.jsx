@@ -1,48 +1,32 @@
-
-const RankingTable = () => {
-
-    return (
-      <div className="border p-3 mb-4">
-        <h1>Ranking</h1>
-        <table className="table">
+const RankingTable = (props) => {
+  //console.log("Props table", props.datos)
+  return (
+    <>
+      {props.datos.length > 0 ? (
+        <table className="table table-striped">
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Origen</th>
-              <th scope="col">Destino</th>
+              <th scope="col">Departamento</th>
+              <th scope="col">Cantidad envios</th>
+              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
-            <tr>
-              <th scope="row">5</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-            </tr>
+            {props.datos.map((envio, index) => ( 
+              <tr key={envio.id}>
+                <th  scope="row">{index+1}</th>
+                <td>{envio.depto.nombre}</td>
+                <td>{envio.totalEnvios}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
-      </div>
-    );
-
-}
+      ) : (
+        <p>Cargando...</p>
+      )}
+    </>
+  );
+};
 
 export default RankingTable;

@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { FormSelect } from "../Envios/EnviosForm/EnviosForm_Select";
-import { calcularDistancia } from "../../CalculadorDistancia";
+import { calcularDistancia } from "../../Calculadora/CalculadorDistancia";
 
 const Calculadora = () => {
   const ciudades = useSelector((state) => state.ciudades);
