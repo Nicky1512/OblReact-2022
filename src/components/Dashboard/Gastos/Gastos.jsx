@@ -7,10 +7,10 @@ const Gastos = () => {
     
 
     return (
-        <>
-            <h1>Gastos</h1>
+        <div> 
+            <h1 className="text-center">Gastos</h1>
             <h2>$ {gastoTotal}</h2>
-        </>
+        </div>
     )
 
 }

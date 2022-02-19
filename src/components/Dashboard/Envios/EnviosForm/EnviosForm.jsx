@@ -18,8 +18,6 @@ const EnviosForm = () => {
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
 
-  //const distancia = 110;
-
   const onClickAddEnvio = async (e) => {
     // console.log("origen", slcOrigenRef.current.value, "destino" slcOrigenRef)
     // const test = ciudades.find(ciudad => ciudad.id === (parseInt(slcOrigenRef.current.value)))
@@ -79,8 +77,6 @@ const EnviosForm = () => {
       }
     }
   };
-
-  
 
   const calcularCosto = (distancia, peso) => {
     return precioBase + 10 * peso + (Math.floor(distancia) / 100) * 50;
@@ -148,7 +144,6 @@ const EnviosForm = () => {
             >
               Pedir
             </button>
-    
           </div>
         </fieldset>
       </form>

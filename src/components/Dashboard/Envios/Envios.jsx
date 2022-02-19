@@ -1,6 +1,6 @@
 import EnviosList from "./EnviosList";
 import EnviosForm from "./EnviosForm";
-import Gastos from '../Gastos/Gastos'
+import Gastos from "../Gastos/Gastos";
 
 const Envios = () => {
   return (
@@ -10,7 +10,7 @@ const Envios = () => {
           <div className="p-3 border bg-light">
             <EnviosForm />
           </div>
-          <div className="p-3 border bg-light">
+          <div className="p-3 border bg-light mt-3">
             <Gastos />
           </div>
         </div>
