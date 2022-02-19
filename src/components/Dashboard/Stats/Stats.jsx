@@ -49,9 +49,9 @@ const Stats = () => {
       }
     });
     // console.log("Envios x departamento", enviosxDeptoList);
-    return enviosxDeptoList.sort((a, b) =>
-      a.totalEnvios < b.totalEnvios ? 1 : -1
-    );
+    enviosxDeptoList.sort((a, b) => (a.totalEnvios < b.totalEnvios ? 1 : -1));
+
+    return enviosxDeptoList.slice(0, 5);
   };
 
   const enviosDepto = enviosXDepartamento();
@@ -59,9 +59,14 @@ const Stats = () => {
 
   return (
     <>
-      <RankingTable datos={enviosDepto} />
       <div>
-        <h1>Graphs</h1>
+        <h1 className="text-center">
+          Ranking de los departamentos con mas envios
+        </h1>
+        <RankingTable datos={enviosDepto} />
+      </div>
+      <div>
+        <h1 className="text-center">Graphs</h1>
         <div className="container">
           <Graph />
           <Graph />
