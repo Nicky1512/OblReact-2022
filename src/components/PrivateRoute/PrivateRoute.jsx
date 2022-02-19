@@ -1,8 +1,8 @@
-/* import React from "react";
+import React from "react";
 import { useSelector } from "react-redux";
-import { Navigate, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
+/* const PrivateRoute = ({ component: Component, ...rest }) => {
   const user = useSelector((state) => state.userLogged);
   if (user) {
     return (
@@ -16,6 +16,11 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
       <Navigate to="/login" />
     </Route>
   );
-};
+}; */
 
-export default PrivateRoute; */
+const PrivateRoute = ({ children }) => {
+  const user = useSelector((state) => state.userLogged);
+  return user ? children : <Navigate to="/" />;
+}
+export default PrivateRoute;
+

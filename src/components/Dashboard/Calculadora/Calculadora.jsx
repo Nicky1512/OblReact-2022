@@ -14,7 +14,7 @@ const Calculadora = () => {
     e.preventDefault();
     const origen = parseInt(slcOrigenRef.current.value);
     const destino = parseInt(slcDestinoRef.current.value);
-    if (origen != -1 && destino != -1) {
+    if (origen !== -1 && destino !== -1) {
       setDistancia(calcularDistancia(origen, destino, ciudades));
     }else{
       alert("Debe seleccionar un destino y un origen");
@@ -23,7 +23,7 @@ const Calculadora = () => {
 
   return (
     <div className="">
-      <h1>Calculadora</h1>
+      <h1 className="text-center">Calculadora</h1>
       <div className="p-5 border bg-light">
         <form>
           <fieldset>
@@ -56,7 +56,7 @@ const Calculadora = () => {
               <button
                 onClick={calcular}
                 type="submit"
-                className="btn btn-dark btn-lg pr-5 pl-5"
+                className="btn btn-dark btn-lg mt-3 pr-5 pl-5"
               >
                 Calcular
               </button>
@@ -65,7 +65,9 @@ const Calculadora = () => {
         </form>
       </div>
       <div className="mt-3">
-        <p className="border p-2 ">RESULTADO: {distancia} km </p>
+        <p className="border p-3 alert alert-primary">
+          RESULTADO: <strong>{distancia} km</strong>
+        </p>
       </div>
     </div>
   );

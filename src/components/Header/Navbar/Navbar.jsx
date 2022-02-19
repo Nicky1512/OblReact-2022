@@ -25,14 +25,17 @@ const Navbar = (props) => {
     <div>
       <ul className="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
         <li>
-          <Link className="nav-link px-2 link-secondary" to="calculadora">
+          <Link
+            className="nav-link px-2 link-secondary"
+            to="/calculadora"
+          >
             Calculadora
-          </Link>{" "}
+          </Link>
         </li>
         <li>
-          <Link className="nav-link px-2 link-secondary" to="stats">
+          <Link className="nav-link px-2 link-secondary" to="/stats">
             Stats
-          </Link>{" "}
+          </Link>
         </li>
       </ul>
     </div>
