@@ -48,12 +48,11 @@ const onAddEnvio = (newEnvio) =>{
     };
 };
 
-const onDeleteEnvio = (id) => {
+const onDeleteEnvio = (envioABorrar) => {
     return {
       type: ON_DELETE_ENVIO,
-      payload: {
-        id: id,
-      },
+      payload: envioABorrar
+      
     };
   };
 
