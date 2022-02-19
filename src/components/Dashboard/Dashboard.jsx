@@ -24,6 +24,7 @@ const Dashboard = () => {
       try {
         const enviosResponse = await getEnvios(userLogged);
         if (enviosResponse.codigo === 200) {  
+      
           let sum = 0;
           enviosResponse.envios.forEach(function(envio){
             sum += envio.precio;
@@ -67,9 +68,11 @@ const Dashboard = () => {
     (async () => {
       try {
         const ciudadesResponse = await getCiudades(userLogged);
-    
+        
         if (ciudadesResponse.codigo === 200) {
           dispatch(onGetCiudades(ciudadesResponse.ciudades));
+          console.log(ciudadesResponse.ciudades)
+         
         }else{
           console.log(ciudadesResponse.codigo);
          //TODO: cod 401-cerrar sesion 
@@ -81,7 +84,7 @@ const Dashboard = () => {
   }, []);
 
 
-   //Carga ciudades
+   //Carga deptos
    useEffect(() => {
     (async () => {
       try {
@@ -89,6 +92,7 @@ const Dashboard = () => {
     
         if (response.codigo === 200) {
           dispatch(onGetDeptos(response.departamentos));
+          console.log(response.departamentos)
         }else{
           console.log(response.codigo);
          //TODO: cod 401-cerrar sesion 
@@ -106,8 +110,7 @@ const Dashboard = () => {
       {
         <div className="container-fluid">
           <Envios />
-          
-       
+ 
         </div>
       }
       {/* <div className="container">
