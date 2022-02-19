@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Envios from "./Envios";
+import Stats from '../Dashboard/Stats/Stats'
 import Calculadora from './Calculadora'
 import Header from "../Header/Header";
 import { getEnvios, getCategorias, getCiudades, getDeptos } from "../../services/serviceApi";
@@ -109,6 +110,7 @@ const Dashboard = () => {
       <Header />
       {
         <div className="container-fluid">
+          <Stats/>
           <Envios />
  
         </div>

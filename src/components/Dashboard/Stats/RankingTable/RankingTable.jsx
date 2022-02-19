@@ -1,22 +1,5 @@
-import { useSelector } from "react-redux";
-
 
 const RankingTable = () => {
-
-  const ciudades = useSelector((state) => state.ciudades);
-  const deptos = useSelector((state) => state.deptos);
-  const envios = useSelector((state) => state.envios);
-
-  const topDepartamentos = () =>{
-/*       const enviosCiudad = envios.map((envio) => {
-        ciudades.map(ciudad => {
-          ciudad.id === envio.ciudad_destino
-        })
- */
-
-
-     
-  }
 
     return (
       <div className="border p-3 mb-4">

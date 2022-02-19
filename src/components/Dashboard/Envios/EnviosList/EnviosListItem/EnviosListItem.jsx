@@ -16,12 +16,13 @@ const EnvioListItem = ({
   const onDelete = async () => {
     //console.log("borrar el envio", id);
     const envioAborrar = {
-      idEnvio: id 
+      idEnvio: id, 
+      precio: precio
     };
     try {
       const response = await deleteEnvio(envioAborrar, userLogged);   
       console.log(response);
-      dispatch(onDeleteEnvio(id));
+      dispatch(onDeleteEnvio(envioAborrar));
     } catch (error) {
       alert(error.message);
     }

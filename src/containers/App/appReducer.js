@@ -33,9 +33,10 @@ const appReducer = (state = initialState, action) => {
     case GET_DEPTOS:
       return { ...state, deptos: payload };
       case ON_DELETE_ENVIO:
-        const newEnviosList = state.envios.filter((envio) => envio.id !== payload.id);
+        const newEnviosList = state.envios.filter((envio) => envio.id !== payload.idEnvio);
+        console.log("el envio en delete", payload);
        // console.log(newEnviosList);
-        return { ...state, envios: newEnviosList };
+        return { ...state, envios: newEnviosList, gasto: state.gasto -= parseFloat(payload.precio)};
     default:
       return state;
   }
