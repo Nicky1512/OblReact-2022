@@ -3,18 +3,24 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import Envios from "./Envios";
-import Stats from '../Dashboard/Stats/Stats'
-import Calculadora from './Calculadora'
 import Header from "../Header/Header";
-import { getEnvios, getCategorias, getCiudades, getDeptos } from "../../services/serviceApi";
-import { onLoadEnvios, onGetCategorias, onGetCiudades, onGetDeptos } from "../../containers/App/actions";
-
-
+import {
+  getEnvios,
+  getCategorias,
+  getCiudades,
+  getDeptos,
+} from "../../services/serviceApi";
+import {
+  onLoadEnvios,
+  onGetCategorias,
+  onGetCiudades,
+  onGetDeptos,
+} from "../../containers/App/actions";
 
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.userLogged);
- // const envios = useSelector((state) => state.envios);
- // const categorias = useSelector((state) => state.categorias);
+  // const envios = useSelector((state) => state.envios);
+  // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
 
   //Carga envíos
@@ -22,23 +28,19 @@ const Dashboard = () => {
     (async () => {
       try {
         const enviosResponse = await getEnvios(userLogged);
-        if (enviosResponse.codigo === 200) {  
-      
+        if (enviosResponse.codigo === 200) {
           let sum = 0;
-          enviosResponse.envios.forEach(function(envio){
+          enviosResponse.envios.forEach(function (envio) {
             sum += envio.precio;
-           });
+          });
           const payload = {
             envios: enviosResponse.envios,
-            gastoTotal:  sum
-
-          }
-        
+            gastoTotal: sum,
+          };
           dispatch(onLoadEnvios(payload));
           //dispatch(onLoadEnvios(enviosResponse.envios));
-        }else{
-          if(enviosResponse.codigo === 401){
-
+        } else {
+          if (enviosResponse.codigo === 401) {
           }
           console.log(enviosResponse.codigo);
         }
@@ -55,7 +57,7 @@ const Dashboard = () => {
         const catResponse = await getCategorias(userLogged);
         if (catResponse.codigo === 200) {
           dispatch(onGetCategorias(catResponse.categorias));
-        }else{
+        } else {
           console.log(catResponse.codigo);
         }
       } catch (error) {
@@ -69,14 +71,12 @@ const Dashboard = () => {
     (async () => {
       try {
         const ciudadesResponse = await getCiudades(userLogged);
-        
+
         if (ciudadesResponse.codigo === 200) {
           dispatch(onGetCiudades(ciudadesResponse.ciudades));
-         
-         
-        }else{
+        } else {
           console.log(ciudadesResponse.codigo);
-         //TODO: cod 401-cerrar sesion 
+          //TODO: cod 401-cerrar sesion
         }
       } catch (error) {
         console.log(error.message);
@@ -84,41 +84,32 @@ const Dashboard = () => {
     })();
   }, []);
 
-   //Carga deptos
-   useEffect(() => {
+  //Carga deptos
+  useEffect(() => {
     (async () => {
       try {
         const response = await getDeptos(userLogged);
-    
+
         if (response.codigo === 200) {
           dispatch(onGetDeptos(response.departamentos));
-         
-        }else{
+        } else {
           console.log(response.codigo);
-         //TODO: cod 401-cerrar sesion 
+          //TODO: cod 401-cerrar sesion
         }
       } catch (error) {
         console.log(error.message);
       }
     })();
   }, []);
-
 
   return (
     <>
       <Header />
       {
         <div className="container-fluid">
-          <Stats/>
           <Envios />
         </div>
       }
-      {/* <div className="container">
-        <Calculadora />
-      </div> */}
-      {/* <div className="container-fluid">
-        <Stats />
-    </div> */}
     </>
   );
 };
