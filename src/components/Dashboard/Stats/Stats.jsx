@@ -23,7 +23,7 @@ const Stats = () => {
         enviosCiudadList.push(envioCiudad_Element);
       }
     });
-
+    console.log("EnviosCiudadList", enviosCiudadList);
     return enviosCiudadList;
   };
 
@@ -48,13 +48,16 @@ const Stats = () => {
         enviosxDeptoList.push(envioDepto_Element);
       }
     });
-    // console.log("Envios x departamento", enviosxDeptoList);
-    enviosxDeptoList.sort((a, b) => (a.totalEnvios < b.totalEnvios ? 1 : -1));
+    console.log("Envios x departamento", enviosxDeptoList);
 
-    return enviosxDeptoList.slice(0, 5);
+    //ordeno la lista por totalEnvios y depues me quedo con los 5 primeros
+    return enviosxDeptoList
+      .sort((a, b) => (a.totalEnvios < b.totalEnvios ? 1 : -1))
+      .slice(0, 5);
   };
 
   const enviosDepto = enviosXDepartamento();
+  const enviosCiudad = enviosXCiudad();
   //enviosXDepartamento();
 
   return (
@@ -68,7 +71,7 @@ const Stats = () => {
       <div>
         <h1 className="text-center">Graphs</h1>
         <div className="container">
-          <Graph />
+          <Graph datos={enviosCiudad} />
           <Graph />
         </div>
       </div>
