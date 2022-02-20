@@ -6,6 +6,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 
 import Login from '../Form/Login/Login';
+import Register from '../Form/Register/Register';
 import Dashboard from '../Dashboard/Dashboard'
 import Calculadora from '../Dashboard/Calculadora/Calculadora'
 import Stats from '../Dashboard/Stats/Stats'
@@ -17,14 +18,15 @@ const App = () => {
   const userLogged = useSelector((state) => state.userLogged);
   const navigate = useNavigate();
   const { pathname } = useLocation();
+  console.log(userLogged);
 
   useEffect(() => {
     if (userLogged !== null) {
       const loc =
-        pathname !== '/login' && pathname !== '/'
-          ? pathname
-          : '/';
-      navigate("/dashboard");
+      pathname !== '/login' && pathname !== '/' && pathname !== '/register'
+      ? pathname
+      : '/dashboard';
+      navigate(loc);
     }
   }, [userLogged, navigate, pathname]);
 
@@ -32,6 +34,8 @@ const App = () => {
     <div className="App">
       <Routes>
         <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
         <Route
           path="/dashboard"
           element={
@@ -42,7 +46,7 @@ const App = () => {
         >
         </Route>
         <Route
-          path="/dashboard/calculadora"
+          path="/calculadora"
           element={
             <PrivateRoute>
               <Calculadora />
@@ -51,7 +55,7 @@ const App = () => {
         >
         </Route>
         <Route
-          path="/dashboard/stats"
+          path="/stats"
           element={
             <PrivateRoute>
               <Stats />
