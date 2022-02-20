@@ -12,9 +12,10 @@ const Stats = () => {
 
     ciudades.forEach((ciudad) => {
       const cantEnvios = envios.filter(
-        (envio) => envio.ciudad_destino === ciudad.id).length; //hace un array por cada ciudad con todos sus envios. .length para obteener el total
+        (envio) => envio.ciudad_destino === ciudad.id
+      ).length; //hace un array por cada ciudad con todos sus envios. .length para obteener el total
       if (cantEnvios > 0) {
-        const envioCiudad_Element = { 
+        const envioCiudad_Element = {
           ciudad: ciudad,
           id_depto: ciudad.id_departamento,
           cantEnvios: cantEnvios,
@@ -22,14 +23,13 @@ const Stats = () => {
         enviosCiudadList.push(envioCiudad_Element);
       }
     });
+    console.log("EnviosCiudadList", enviosCiudadList);
     return enviosCiudadList;
   };
 
-
- 
   const enviosXDepartamento = () => {
     const enviosCiudadList = enviosXCiudad();
-   // console.log("Envios x Ciudad", enviosCiudadList);
+    // console.log("Envios x Ciudad", enviosCiudadList);
 
     const totalEnviosDepto = (deptoId) =>
       enviosCiudadList
@@ -48,21 +48,30 @@ const Stats = () => {
         enviosxDeptoList.push(envioDepto_Element);
       }
     });
-   // console.log("Envios x departamento", enviosxDeptoList);
-    return enviosxDeptoList;
+    console.log("Envios x departamento", enviosxDeptoList);
+
+    //ordeno la lista por totalEnvios y depues me quedo con los 5 primeros
+    return enviosxDeptoList
+      .sort((a, b) => (a.totalEnvios < b.totalEnvios ? 1 : -1))
+      .slice(0, 5);
   };
 
-
   const enviosDepto = enviosXDepartamento();
+  const enviosCiudad = enviosXCiudad();
   //enviosXDepartamento();
 
   return (
     <>
-      <RankingTable datos={enviosDepto}/>
       <div>
-        <h1>Graphs</h1>
+        <h1 className="text-center">
+          Ranking de los departamentos con mas envios
+        </h1>
+        <RankingTable datos={enviosDepto} />
+      </div>
+      <div>
+        <h1 className="text-center">Graphs</h1>
         <div className="container">
-          <Graph />
+          <Graph datos={enviosCiudad} />
           <Graph />
         </div>
       </div>

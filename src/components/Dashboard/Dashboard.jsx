@@ -17,8 +17,6 @@ const Dashboard = () => {
  // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
 
-
-
   //Carga envíos
   useEffect(() => {
     (async () => {
@@ -46,7 +44,6 @@ const Dashboard = () => {
       }
     })();
   }, []);
-
 
   //Carga categorias
   useEffect(() => {
@@ -83,7 +80,6 @@ const Dashboard = () => {
       }
     })();
   }, []);
-
 
    //Carga deptos
    useEffect(() => {

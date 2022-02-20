@@ -9,20 +9,19 @@ const RankingTable = (props) => {
               <th scope="col">#</th>
               <th scope="col">Departamento</th>
               <th scope="col">Cantidad envios</th>
-              <th scope="col"></th>
             </tr>
           </thead>
           <tbody>
             {props.datos.map((envio, index) => ( 
               <tr key={envio.id}>
-                <th  scope="row">{index+1}</th>
+                <td>{index+1}</td>
                 <td>{envio.depto.nombre}</td>
                 <td>{envio.totalEnvios}</td>
               </tr>
             ))}
           </tbody>
         </table>
-      ) : (
+      ) : ( 
         <p>Cargando...</p>
       )}
     </>
