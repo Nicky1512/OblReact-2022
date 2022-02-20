@@ -37,6 +37,9 @@ const Dashboard = () => {
           dispatch(onLoadEnvios(payload));
           //dispatch(onLoadEnvios(enviosResponse.envios));
         }else{
+          if(enviosResponse.codigo === 401){
+
+          }
           console.log(enviosResponse.codigo);
         }
       } catch (error) {
