@@ -5,7 +5,7 @@ import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { onUserLogged } from "../../containers/App/actions";
 
-//import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const Form = (props) => {
   const refUser = useRef(null);
@@ -26,13 +26,12 @@ const Form = (props) => {
 
       try {
         const data = await props.onClick(userData);
-      
+
         if (data.codigo !== 200) {
           console.log(data.codigo);
           alert(data.mensaje);
         } else {
-         
-          localStorage.setItem('loggedUser', JSON.stringify(data))
+          localStorage.setItem("loggedUser", JSON.stringify(data));
           dispatch(onUserLogged(data));
         }
       } catch (error) {
@@ -44,7 +43,7 @@ const Form = (props) => {
   return (
     <section className="container">
       <div className="login">
-        <h2>login</h2>
+        <h2>{props.title}</h2>
         <div className="login_body">
           <form>
             <div className="login_fields">
@@ -74,12 +73,12 @@ const Form = (props) => {
                 {props.btnName}
               </button>
             </div>
-            {/* <p className="txt_login">
-              Not signed-in yet?{" "}
-              <Link to={'/register'} className="a">
-                Sign-in now
+            <p className="txt_login">
+              {props.linkText}
+              <Link to={props.link} className="a pl-2">
+                {props.linkTitle}
               </Link>
-            </p> */}
+            </p>
           </form>
         </div>
       </div>

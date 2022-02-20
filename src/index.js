@@ -9,6 +9,7 @@ import Dashboard from './components/Dashboard/Dashboard';
 import Stats from './components/Dashboard/Stats/Stats';
 import Calculadora from './components/Dashboard/Calculadora/Calculadora';
 import Login from './components/Form/Login/Login';
+import Register from './components/Form/Register/Register'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 
@@ -18,8 +19,10 @@ ReactDOM.render(
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<App />}>
-            <Route index element={<Login />} />
-            <Route path='dashboard' element={<Dashboard />} />
+            {/* <Route index element={<Login />} /> */}
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+            <Route path='/dashboard' element={<Dashboard />} />
             <Route path="/calculadora" element={<Calculadora />} />
             <Route path="/stats" element={<Stats />} />
           </Route>

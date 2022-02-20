@@ -17,8 +17,10 @@ const Login = () => {
   return (
     <>
       <Form
+        title="Login"
         btnName="Login"
         linkText="No tenes cuenta?"
+        link="/register"
         linkTitle="Registrate!"
         onClick={onLoginSubmit}
       />

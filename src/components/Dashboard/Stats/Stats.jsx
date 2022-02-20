@@ -1,6 +1,7 @@
 import Graph from "./Graph/Graph";
 import RankingTable from "./RankingTable/RankingTable";
 import { useSelector } from "react-redux";
+import Header from "../../Header/Header";
 
 const Stats = () => {
   const ciudades = useSelector((state) => state.ciudades);
@@ -50,7 +51,7 @@ const Stats = () => {
     });
     console.log("Envios x departamento", enviosxDeptoList);
 
-    //ordeno la lista por totalEnvios y depues me quedo con los 5 primeros
+    //ordeno la lista por totalEnvios y despues me quedo con los 5 primeros
     return enviosxDeptoList
       .sort((a, b) => (a.totalEnvios < b.totalEnvios ? 1 : -1))
       .slice(0, 5);
@@ -62,6 +63,7 @@ const Stats = () => {
 
   return (
     <>
+      <Header />
       <div>
         <h1 className="text-center">
           Ranking de los departamentos con mas envios

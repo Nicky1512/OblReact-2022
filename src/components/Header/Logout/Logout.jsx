@@ -1,21 +1,25 @@
 import { useDispatch } from "react-redux";
 
-import {onUserLogout} from '../../../containers/App/actions'
-
+import { onUserLogout } from "../../../containers/App/actions";
 
 const Logout = () => {
- 
-const dispatch = useDispatch;    
-const onHandleLogout = ()=>{
+  const dispatch = useDispatch;
 
-    localStorage.removeItem('loggedUser');
+  const onHandleLogout = () => {
+    localStorage.removeItem("loggedUser");
     dispatch(onUserLogout);
-}
+  };
 
   return (
-            <div>
-             <button onClick={(onHandleLogout)} type="button" class="btn btn-link">Cerrar sesión</button>
-            </div>
+    <div>
+      <button
+        onClick={onHandleLogout}
+        type="button"
+        class="btn btn-outline-primary"
+      >
+        Cerrar sesión
+      </button>
+    </div>
   );
 };
 
