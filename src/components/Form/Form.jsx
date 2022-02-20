@@ -31,9 +31,8 @@ const Form = (props) => {
           console.log(data.codigo);
           alert(data.mensaje);
         } else {
-          //  Guardo al usuario en el storage / localstorage o sessionstorage
-          // sessionStorage.setItem('myTodoAppUser', JSON.stringify(data))
-          //   Invoco a mi componente padre (App) para enviarle los datos del usuario
+         
+          localStorage.setItem('loggedUser', JSON.stringify(data))
           dispatch(onUserLogged(data));
         }
       } catch (error) {

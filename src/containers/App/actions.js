@@ -58,4 +58,4 @@ const onDeleteEnvio = (envioABorrar) => {
 
 
 
-export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onGetCategorias, onGetCiudades, onGetDeptos};
+export {onUserLogged, onLoadEnvios, onAddEnvio, onDeleteEnvio, onGetCategorias, onGetCiudades, onGetDeptos, onUserLogout};

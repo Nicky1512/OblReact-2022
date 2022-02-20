@@ -1,3 +1,4 @@
+import Logout from "./Logout";
 import Navbar from "./Navbar/Navbar";
 
 const Header = () => {
@@ -12,7 +13,9 @@ const Header = () => {
             Obligatorio
           </a>
           <Navbar />
+          <Logout/>
         </header>
+
       </div>
     </>
   );
