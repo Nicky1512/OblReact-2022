@@ -18,7 +18,7 @@ const App = () => {
   const userLogged = useSelector((state) => state.userLogged);
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  console.log(userLogged);
+  //console.log(userLogged);
 
   useEffect(() => {
     if (userLogged !== null) {

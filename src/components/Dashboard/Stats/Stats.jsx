@@ -29,7 +29,7 @@ const Stats = () => {
         enviosCiudadList.push(envioCiudad_Element);
       }
     });
-    console.log("EnviosCiudadList", enviosCiudadList);
+   // console.log("EnviosCiudadList", enviosCiudadList);
     return enviosCiudadList;
   };
 
@@ -54,7 +54,7 @@ const Stats = () => {
         enviosxDeptoList.push(envioDepto_Element);
       }
     });
-    console.log("Envios x departamento", enviosxDeptoList);
+    //console.log("Envios x departamento", enviosxDeptoList);
 
     //ordeno la lista por totalEnvios y despues me quedo con los 5 primeros
     return enviosxDeptoList
