@@ -22,7 +22,7 @@ const RankingTable = (props) => {
           </tbody>
         </table>
       ) : ( 
-        <p>Cargando...</p>
+        <p>No hay datos</p>
       )}
     </>
   );

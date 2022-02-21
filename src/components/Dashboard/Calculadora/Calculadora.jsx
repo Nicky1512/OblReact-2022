@@ -27,7 +27,7 @@ const Calculadora = () => {
       <Header />
       <div className="">
         <h1 className="text-center">Calculadora</h1>
-        <div className="p-5 border bg-light">
+        <div className="p-5 border bg-light text-center">
           <form>
             <fieldset>
               <legend>Calcular distancia</legend>
