@@ -1,13 +1,17 @@
 import { useDispatch } from "react-redux";
+import { useNavigate } from 'react-router-dom';
 
 import { onUserLogout } from "../../../containers/App/actions";
 
+
 const Logout = () => {
   const dispatch = useDispatch;
+  const navigate = useNavigate();
 
   const onHandleLogout = () => {
     localStorage.removeItem("loggedUser");
     dispatch(onUserLogout);
+    navigate('/');
   };
 
   return (

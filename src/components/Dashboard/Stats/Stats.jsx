@@ -2,12 +2,16 @@ import Graph from "./Graph/Graph";
 import RankingTable from "./RankingTable/RankingTable";
 import { useSelector } from "react-redux";
 import Header from "../../Header/Header";
+import NoContentDiv from "../NoContentDiv//NoContent";
 
 const Stats = () => {
   const ciudades = useSelector((state) => state.ciudades);
   const deptos = useSelector((state) => state.deptos);
   const envios = useSelector((state) => state.envios);
   const categorias = useSelector((state) => state.categorias);
+
+
+
 
   const enviosXCiudad = () => {
     const enviosCiudadList = [];
@@ -25,7 +29,7 @@ const Stats = () => {
         enviosCiudadList.push(envioCiudad_Element);
       }
     });
-    console.log("EnviosCiudadList", enviosCiudadList);
+   // console.log("EnviosCiudadList", enviosCiudadList);
     return enviosCiudadList;
   };
 
@@ -50,7 +54,7 @@ const Stats = () => {
         enviosxDeptoList.push(envioDepto_Element);
       }
     });
-    console.log("Envios x departamento", enviosxDeptoList);
+    //console.log("Envios x departamento", enviosxDeptoList);
 
     //ordeno la lista por totalEnvios y despues me quedo con los 5 primeros
     return enviosxDeptoList
@@ -79,6 +83,13 @@ const Stats = () => {
 
   const enviosDepto = enviosXDepartamento();
   const enviosCiudad = enviosXCiudad();
+
+
+
+
+
+
+
   const enviosCategoria = enviosXCategoria();
 
   const ciudadesEnvios = enviosCiudad.map((e) => {
@@ -103,7 +114,11 @@ const Stats = () => {
             Ranking de los departamentos con mas envios
           </h1>
           <div className="">
-            <RankingTable datos={enviosDepto} />
+            {enviosDepto && enviosDepto.length > 0 ? (
+              <RankingTable datos={enviosDepto} />
+            ) : (
+              <NoContentDiv />
+            )}
           </div>
         </div>
       </div>
@@ -111,18 +126,26 @@ const Stats = () => {
         <div className="p-3 border bg-light">
           <h1 className="text-center">Graphs</h1>
           <div className="container-fluid">
-            <Graph
-              className="graph_item"
-              title={"Envios por ciudad"}
-              data={cantidadEnviosCiudades}
-              categories={ciudadesEnvios}
-            />
-            <Graph
-              className="graph_item"
-              title={"Envios por categoria"}
-              data={cantidadEnviosCategorias}
-              categories={categoriasEnvios}
-            />
+            {ciudadesEnvios && ciudadesEnvios.length > 0 ? (
+              <Graph
+                className="graph_item"
+                title={"Envios por ciudad"}
+                data={cantidadEnviosCiudades}
+                categories={ciudadesEnvios}
+              />
+            ) : (
+              <NoContentDiv />
+            )}
+            {categoriasEnvios && categoriasEnvios.length > 0 ? (
+              <Graph
+                className="graph_item"
+                title={"Envios por categoria"}
+                data={cantidadEnviosCategorias}
+                categories={categoriasEnvios}
+              />
+            ) : (
+              <NoContentDiv />
+            )}
           </div>
         </div>
       </div>
