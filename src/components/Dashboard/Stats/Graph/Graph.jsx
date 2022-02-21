@@ -1,11 +1,17 @@
 import { useEffect, useState } from "react";
 import Chart from "react-apexcharts";
 
+/* 0:
+cantEnvios: 1
+ciudad: {id: 129774, nombre: 'Aguas Corrientes', id_departamento: 3213, codigo_departamento: 'CA', id_pais: 235, …}
+ */
+
+
 const Graph = (props) => {
-  /* const [data, setData] = useState({
+   const [data, setData] = useState({
     series: [
       {
-        data: [parametro, contador],
+        data: props.data
       },
     ],
     options: {
@@ -23,25 +29,15 @@ const Graph = (props) => {
         enabled: false,
       },
       xaxis: {
-        categories: [parametro, enviosTotales],
+        categories: props.categories,
       },
     },
-  }); */
-  /* useEffect(() => {
-    setData({
-      ...data,
-      series: [
-        {
-          data: [props.data, props.enviosTotales],
-        },
-      ],
-    });
-  }, [,]);
- */
+  }); 
+
   return (
     <div className="border p-3">
-      <h3>Graph</h3>
-      {/* {props.datos.length > 0 ? (
+      <h3>{props.title}</h3>
+      {props.categories.length > 0 ? (
         <Chart
           options={data.options}
           series={data.series}
@@ -49,8 +45,8 @@ const Graph = (props) => {
           height={350}
         />
       ) : (
-        <p>Cargando...</p>
-      )} */}
+        <p>No hay datos</p>
+      )}
     </div>
   );
 };

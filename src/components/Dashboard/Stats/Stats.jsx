@@ -7,6 +7,7 @@ const Stats = () => {
   const ciudades = useSelector((state) => state.ciudades);
   const deptos = useSelector((state) => state.deptos);
   const envios = useSelector((state) => state.envios);
+  const categorias = useSelector((state) => state.categorias);
 
   const enviosXCiudad = () => {
     const enviosCiudadList = [];
@@ -57,9 +58,33 @@ const Stats = () => {
       .slice(0, 5);
   };
 
+  const enviosXCategoria = () => {
+    const enviosCategoriaList = [];
+    if (categorias.length > 0) {
+      categorias.forEach((categoria) => {
+        const cantEnvios = envios.filter(
+          (envio) => envio.id_categoria === categoria.id
+        ).length;
+        if (cantEnvios > 0) {
+          const envioCategoria_Element = {
+            categoria: categoria.nombre,
+            cantEnvios: cantEnvios,
+          };
+          enviosCategoriaList.push(envioCategoria_Element);
+        }
+      });
+    }
+    return enviosCategoriaList;
+  };
+
   const enviosDepto = enviosXDepartamento();
   const enviosCiudad = enviosXCiudad();
-  //enviosXDepartamento();
+  const enviosCategoria = enviosXCategoria();
+
+  const ciudadesEnvios = enviosCiudad.map(e => {return e.ciudad.nombre});
+  const categoriasEnvios = enviosCategoria.map(e => {return e.categoria});
+  const cantidadEnviosCiudades = enviosCiudad.map(e => {return e.cantEnvios});
+  const cantidadEnviosCategorias = enviosCategoria.map(e => {return e.cantEnvios});
 
   return (
     <>
@@ -73,8 +98,8 @@ const Stats = () => {
       <div>
         <h1 className="text-center">Graphs</h1>
         <div className="container">
-          <Graph datos={enviosCiudad} />
-          <Graph />
+          <Graph title={"Envios por ciudad"} data={cantidadEnviosCiudades} categories={ciudadesEnvios}/>
+          <Graph title={"Envios por categoria"} data={cantidadEnviosCategorias} categories={categoriasEnvios}/>
         </div>
       </div>
     </>
