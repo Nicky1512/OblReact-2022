@@ -38,13 +38,18 @@ const EnvioListItem = ({
             <h5 className="card-title">Pedido</h5>
             <h6 className="card-subtitle mb-2 text-muted">#.{id}</h6>
             <p className="card-text">
-              Ciudad Origen:{" "}
-              {ciudades.find((ciudad) => ciudad.id === ciudad_origen).nombre} |
-              Ciudad Destino :{" "}
+              <i>Ciudad Origen:</i>{" "}
+              {ciudades.find((ciudad) => ciudad.id === ciudad_origen).nombre}
+              <br></br>
+              <i>Ciudad Destino:</i>{" "}
               {ciudades.find((ciudad) => ciudad.id === ciudad_destino).nombre}
             </p>
-            <p className="card-text">Distancia: {distancia}km</p>
-            <p className="card-text">Costo: {precio}$</p>
+            <p className="card-text">
+              Distancia: <strong>{distancia}km</strong>
+            </p>
+            <p className="card-text">
+              Costo: <strong>{precio}$</strong>
+            </p>
             <button onClick={onDelete} className="eliminar_btn btn btn-danger">
               Eliminar
             </button>

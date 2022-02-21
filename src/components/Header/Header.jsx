@@ -1,21 +1,29 @@
+import logo from "./reactLogo.png";
+
 import Logout from "./Logout";
 import Navbar from "./Navbar/Navbar";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <>
       <div className="container-fluid">
-        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-          <a
-            href="#"
-            className="d-flex align-items-center col-md-3 mb-2 mb-md-0 text-dark text-decoration-none"
+        <header className="d-flex flex-wrap align-items-center justify-content-center justify-content-between py-3 mb-4 border-bottom">
+          <Link
+            to="/dashboard"
+            className="d-flex align-items-center mb-2"
           >
-            Obligatorio
-          </a>
+            <img
+              src={logo}
+              width="40"
+              height="40"
+              /* className="d-inline-block align-top" */
+              alt="Logo react"
+            />
+          </Link>
           <Navbar />
-          <Logout/>
+          <Logout />
         </header>
-
       </div>
     </>
   );

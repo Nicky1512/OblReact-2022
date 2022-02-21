@@ -19,8 +19,6 @@ import {
 
 const Dashboard = () => {
   const userLogged = useSelector((state) => state.userLogged);
-  // const envios = useSelector((state) => state.envios);
-  // const categorias = useSelector((state) => state.categorias);
   const dispatch = useDispatch();
 
   //Carga envíos
@@ -48,7 +46,7 @@ const Dashboard = () => {
         console.log(error.message);
       }
     })();
-  }, []);
+  }, [dispatch, userLogged]);
 
   //Carga categorias
   useEffect(() => {
@@ -64,7 +62,7 @@ const Dashboard = () => {
         console.log(error.message);
       }
     })();
-  }, []);
+  }, [dispatch, userLogged]);
 
   //Carga ciudades
   useEffect(() => {
@@ -106,7 +104,7 @@ const Dashboard = () => {
     <>
       <Header />
       {
-        <div className="container-fluid">
+        <div className="">
           <Envios />
         </div>
       }

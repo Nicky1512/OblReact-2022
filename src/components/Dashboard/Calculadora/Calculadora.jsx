@@ -25,7 +25,7 @@ const Calculadora = () => {
   return (
     <>
       <Header />
-      <div className="">
+      <div className="container-fluid">
         <h1 className="text-center">Calculadora</h1>
         <div className="p-5 border bg-light text-center">
           <form>
