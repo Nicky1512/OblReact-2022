@@ -52,7 +52,7 @@ const Graph = (props) => {
           height={350}
         />
       ) : (
-        <p>No hay datos</p>
+        <p>Cargando...</p>
       )}
     </div>
   );
