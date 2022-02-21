@@ -81,25 +81,49 @@ const Stats = () => {
   const enviosCiudad = enviosXCiudad();
   const enviosCategoria = enviosXCategoria();
 
-  const ciudadesEnvios = enviosCiudad.map(e => {return e.ciudad.nombre});
-  const categoriasEnvios = enviosCategoria.map(e => {return e.categoria});
-  const cantidadEnviosCiudades = enviosCiudad.map(e => {return e.cantEnvios});
-  const cantidadEnviosCategorias = enviosCategoria.map(e => {return e.cantEnvios});
+  const ciudadesEnvios = enviosCiudad.map((e) => {
+    return e.ciudad.nombre;
+  });
+  const categoriasEnvios = enviosCategoria.map((e) => {
+    return e.categoria;
+  });
+  const cantidadEnviosCiudades = enviosCiudad.map((e) => {
+    return e.cantEnvios;
+  });
+  const cantidadEnviosCategorias = enviosCategoria.map((e) => {
+    return e.cantEnvios;
+  });
 
   return (
     <>
       <Header />
-      <div>
-        <h1 className="text-center">
-          Ranking de los departamentos con mas envios
-        </h1>
-        <RankingTable datos={enviosDepto} />
+      <div className="container-fluid">
+        <div className="container-fluid p-3 border bg-light mb-5">
+          <h1 className="text-center">
+            Ranking de los departamentos con mas envios
+          </h1>
+          <div className="">
+            <RankingTable datos={enviosDepto} />
+          </div>
+        </div>
       </div>
-      <div>
-        <h1 className="text-center">Graphs</h1>
-        <div className="container">
-          <Graph title={"Envios por ciudad"} data={cantidadEnviosCiudades} categories={ciudadesEnvios}/>
-          <Graph title={"Envios por categoria"} data={cantidadEnviosCategorias} categories={categoriasEnvios}/>
+      <div className="container-fluid">
+        <div className="p-3 border bg-light">
+          <h1 className="text-center">Graphs</h1>
+          <div className="container-fluid">
+            <Graph
+              className="graph_item"
+              title={"Envios por ciudad"}
+              data={cantidadEnviosCiudades}
+              categories={ciudadesEnvios}
+            />
+            <Graph
+              className="graph_item"
+              title={"Envios por categoria"}
+              data={cantidadEnviosCategorias}
+              categories={categoriasEnvios}
+            />
+          </div>
         </div>
       </div>
     </>
