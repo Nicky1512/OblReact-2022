@@ -21,7 +21,10 @@ const EnvioListItem = ({
     };
     try {
       const response = await deleteEnvio(envioAborrar, userLogged);   
-      dispatch(onDeleteEnvio(envioAborrar));
+      if(response.codigo === 200){
+        dispatch(onDeleteEnvio(envioAborrar));
+      }
+      
     } catch (error) {
       alert(error.message);
     }

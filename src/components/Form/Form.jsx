@@ -40,7 +40,7 @@ const Form = (props) => {
         }
       } catch (error) {
         setErrorMessage("No se pudo completar la solicitud.");
-        alert(error.message);
+        console.log(error.message);
       }
     }
   };

@@ -1,7 +1,7 @@
 import "./Dashboard.css";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-
+import { onUserLogout } from '../../containers/App/actions'
 import Envios from "./Envios";
 import Header from "../Header/Header";
 import {
@@ -39,8 +39,11 @@ const Dashboard = () => {
           //dispatch(onLoadEnvios(enviosResponse.envios));
         } else {
           if (enviosResponse.codigo === 401) {
+            localStorage.removeItem("loggedUser");
+            dispatch(onUserLogout());
           }
           console.log(enviosResponse.codigo);
+          alert("Hay un problema con el servidor.")
         }
       } catch (error) {
         console.log(error.message);
