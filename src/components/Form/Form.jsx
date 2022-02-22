@@ -4,12 +4,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser, faKey } from "@fortawesome/free-solid-svg-icons";
 import { useDispatch } from "react-redux";
 import { onUserLogged } from "../../containers/App/actions";
+import { useState } from "react";
 
 import { Link } from "react-router-dom";
 
 const Form = (props) => {
   const refUser = useRef(null);
   const refPass = useRef(null);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const dispatch = useDispatch();
   const onLoginSubmit = async (e) => {
@@ -20,7 +22,7 @@ const Form = (props) => {
 
     // Validan los datos
     if (username === "" || password === "") {
-      alert("Por favor ingresa los campos obligatorios");
+      setErrorMessage("Por favor ingresa los campos obligatorios");
     } else {
       const userData = { usuario: username, password: password };
 
@@ -29,12 +31,15 @@ const Form = (props) => {
 
         if (data.codigo !== 200) {
           console.log(data.codigo);
-          alert(data.mensaje);
+          //alert(data.mensaje);
+          setErrorMessage(data.mensaje);
+         
         } else {
           localStorage.setItem("loggedUser", JSON.stringify(data));
           dispatch(onUserLogged(data));
         }
       } catch (error) {
+        setErrorMessage("No se pudo completar la solicitud.");
         alert(error.message);
       }
     }
@@ -81,7 +86,9 @@ const Form = (props) => {
             </p>
           </form>
         </div>
+        {errorMessage && <div className="alert alert-danger" role="alert"> {errorMessage} </div>}
       </div>
+      
     </section>
   );
 };

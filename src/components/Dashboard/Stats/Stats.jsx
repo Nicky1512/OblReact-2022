@@ -3,6 +3,7 @@ import RankingTable from "./RankingTable/RankingTable";
 import { useSelector } from "react-redux";
 import Header from "../../Header/Header";
 import NoContentDiv from "../NoContentDiv//NoContent";
+import { useEffect } from "react";
 
 const Stats = () => {
   const ciudades = useSelector((state) => state.ciudades);
@@ -10,31 +11,23 @@ const Stats = () => {
   const envios = useSelector((state) => state.envios);
   const categorias = useSelector((state) => state.categorias);
 
+  useEffect(() => {});
 
-
-
-  const enviosXCiudad = () => {
-    const enviosCiudadList = [];
-
-    ciudades.forEach((ciudad) => {
+  const enviosCiudad = ciudades
+    .map((ciudad) => {
       const cantEnvios = envios.filter(
         (envio) => envio.ciudad_destino === ciudad.id
-      ).length; //hace un array por cada ciudad con todos sus envios. .length para obteener el total
-      if (cantEnvios > 0) {
-        const envioCiudad_Element = {
-          ciudad: ciudad,
-          id_depto: ciudad.id_departamento,
-          cantEnvios: cantEnvios,
-        };
-        enviosCiudadList.push(envioCiudad_Element);
-      }
-    });
-   // console.log("EnviosCiudadList", enviosCiudadList);
-    return enviosCiudadList;
-  };
+      ).length;
+      return {
+        ciudad: ciudad,
+        id_depto: ciudad.id_departamento,
+        cantEnvios: cantEnvios,
+      };
+    })
+    .filter((obj) => obj.cantEnvios > 0);
 
   const enviosXDepartamento = () => {
-    const enviosCiudadList = enviosXCiudad();
+    const enviosCiudadList = enviosCiudad;
     // console.log("Envios x Ciudad", enviosCiudadList);
 
     const totalEnviosDepto = (deptoId) =>
@@ -62,35 +55,23 @@ const Stats = () => {
       .slice(0, 5);
   };
 
-  const enviosXCategoria = () => {
-    const enviosCategoriaList = [];
-    if (categorias.length > 0) {
-      categorias.forEach((categoria) => {
-        const cantEnvios = envios.filter(
-          (envio) => envio.id_categoria === categoria.id
-        ).length;
-        if (cantEnvios > 0) {
-          const envioCategoria_Element = {
-            categoria: categoria.nombre,
-            cantEnvios: cantEnvios,
-          };
-          enviosCategoriaList.push(envioCategoria_Element);
-        }
-      });
-    }
-    return enviosCategoriaList;
-  };
+  const enviosCategoria =
+    categorias.length > 0
+      ? categorias
+          .map((categoria) => {
+            const cantEnvios = envios.filter(
+              (envio) => envio.id_categoria === categoria.id
+            ).length;
+            return {
+              categoria: categoria.nombre,
+              cantEnvios: cantEnvios,
+            };
+          })
+          .filter((obj) => obj.cantEnvios > 0)
+      : [];
 
   const enviosDepto = enviosXDepartamento();
-  const enviosCiudad = enviosXCiudad();
 
-
-
-
-
-
-
-  const enviosCategoria = enviosXCategoria();
 
   const ciudadesEnvios = enviosCiudad.map((e) => {
     return e.ciudad.nombre;
@@ -126,22 +107,22 @@ const Stats = () => {
         <div className="p-3 border bg-light">
           <h1 className="text-center">Graphs</h1>
           <div className="container-fluid">
-            {ciudadesEnvios && ciudadesEnvios.length > 0 ? (
-              <Graph
-                className="graph_item"
-                title={"Envios por ciudad"}
-                data={cantidadEnviosCiudades}
-                categories={ciudadesEnvios}
-              />
-            ) : (
-              <NoContentDiv />
-            )}
             {categoriasEnvios && categoriasEnvios.length > 0 ? (
               <Graph
                 className="graph_item"
                 title={"Envios por categoria"}
                 data={cantidadEnviosCategorias}
                 categories={categoriasEnvios}
+              />
+            ) : (
+              <NoContentDiv />
+            )}
+            {ciudadesEnvios && ciudadesEnvios.length > 0 ? (
+              <Graph
+                className="graph_item"
+                title={"Envios por ciudad"}
+                data={cantidadEnviosCiudades}
+                categories={ciudadesEnvios}
               />
             ) : (
               <NoContentDiv />

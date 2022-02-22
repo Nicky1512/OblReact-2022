@@ -31,7 +31,7 @@ const appReducer = (state = initialState, action) => {
     case ON_ADD_ENVIO:
       return {
         ...state,
-        envios: [...state.envios, payload],
+        envios: [payload, ...state.envios],
         gasto: (state.gasto += parseFloat(payload.precio)),
       };
     case GET_CATEGORIAS:

@@ -3,7 +3,7 @@ import Chart from "react-apexcharts";
 
 
 const Graph = (props) => {
-   const [data, setData] = useState({
+   const [datos, setDatos] = useState({
     series: [
       {
         data: props.data
@@ -30,15 +30,16 @@ const Graph = (props) => {
   }); 
 
   useEffect(() => {
-    setData({
-      ...data,
+    setDatos({
+      ...datos,
       series: [
         {
           data: props.data,
+          categories: props.categories,
         },
       ],
     });
-  }, []);
+  }, props.data, props.categories) ;
 
 
   return (
@@ -46,8 +47,8 @@ const Graph = (props) => {
       <h2 className="mb-4">{props.title}</h2>
       {props.categories.length > 0 ? (
         <Chart
-          options={data.options}
-          series={data.series}
+          options={datos.options}
+          series={datos.series}
           type="bar"
           height={350}
         />
