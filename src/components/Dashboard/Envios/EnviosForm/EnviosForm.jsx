@@ -84,8 +84,9 @@ const EnviosForm = () => {
           setErrorMessage(response.mensaje);
         }
       } catch (error) {
-        // console.log(error.response);
-        alert(error.message);
+         console.log(error.response);
+        setErrorMessage("No se pudo completar la solicitud.");
+       // alert(error.message);
       }
     }
   };
