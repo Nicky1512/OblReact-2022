@@ -11,6 +11,7 @@ import Calculadora from './components/Dashboard/Calculadora/Calculadora';
 import Login from './components/Form/Login/Login';
 import Register from './components/Form/Register/Register'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Err404 from './components/Errors/Err404';
 
 
 ReactDOM.render(
@@ -25,6 +26,7 @@ ReactDOM.render(
             <Route path='/dashboard' element={<Dashboard />} />
             <Route path="/calculadora" element={<Calculadora />} />
             <Route path="/stats" element={<Stats />} />
+            <Route path="*" element={<Err404 />} />
           </Route>
       </Routes>
     </BrowserRouter>,

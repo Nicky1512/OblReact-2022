@@ -11,6 +11,7 @@ import Dashboard from '../Dashboard/Dashboard'
 import Calculadora from '../Dashboard/Calculadora/Calculadora'
 import Stats from '../Dashboard/Stats/Stats'
 import PrivateRoute from '../PrivateRoute/PrivateRoute'
+import Err404 from '../Errors/Err404';
 
 
 
@@ -36,6 +37,7 @@ const App = () => {
         <Route path="/" element={<Login />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="*" element={<Err404 />} />
         <Route
           path="/dashboard"
           element={

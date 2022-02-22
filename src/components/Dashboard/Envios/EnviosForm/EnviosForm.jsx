@@ -4,6 +4,7 @@ import { onAddEnvio } from "../../../../containers/App/actions";
 import { addEnvio } from "../../../../services/serviceApi";
 import { FormSelect } from "./EnviosForm_Select";
 import { calcularDistancia } from "../../../Calculadora/CalculadorDistancia";
+import { useState } from "react";
 
 const EnviosForm = () => {
   const categorias = useSelector((state) => state.categorias);
@@ -14,6 +15,8 @@ const EnviosForm = () => {
   const slcOrigenRef = useRef();
   const slcDestinoRef = useRef();
   const slcCategoriaRef = useRef();
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
 
   const userLogged = useSelector((state) => state.userLogged);
   const dispatch = useDispatch();
@@ -36,9 +39,11 @@ const EnviosForm = () => {
       destino === "-1" ||
       categoria === "-1"
     ) {
-      alert("Debe completar todos los campos.");
+      //alert("Debe completar todos los campos.");
+      setErrorMessage("Debe completar todos los campos");
     } else if (origen === destino) {
-      alert("El origen no puede ser el mismo que el destino.");
+      // alert("El origen no puede ser el mismo que el destino.");
+      setErrorMessage("El origen no puede ser el mismo que el destino.");
     } else {
       const distancia = calcularDistancia(
         parseInt(origen),
@@ -69,7 +74,14 @@ const EnviosForm = () => {
             peso: peso,
             precio: precio,
           };
+
           dispatch(onAddEnvio(newEnvio));
+          setErrorMessage("");
+          setSuccessMessage("Envío realizado con éxito.");
+          setTimeout(() => {setSuccessMessage("");}, 2000)
+          
+        } else {
+          setErrorMessage(response.mensaje);
         }
       } catch (error) {
         // console.log(error.response);
@@ -147,8 +159,21 @@ const EnviosForm = () => {
           </div>
         </fieldset>
       </form>
+      {errorMessage !== "" ? (
+        <div className="alert alert-danger mt-2" role="alert">
+          {" "}
+          {errorMessage}{" "}
+        </div>
+      ) : successMessage !== "" ? ( 
+        <div className="alert alert-success mt-2" role="alert">
+          {" "}
+          {successMessage}{" "}
+        </div>
+      ): <div></div>}
+
     </div>
   );
 };
+
 
 export default EnviosForm;

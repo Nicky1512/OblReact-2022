@@ -21,7 +21,6 @@ const EnvioListItem = ({
     };
     try {
       const response = await deleteEnvio(envioAborrar, userLogged);   
-      console.log(response);
       dispatch(onDeleteEnvio(envioAborrar));
     } catch (error) {
       alert(error.message);
